@@ -1,0 +1,70 @@
+- generic [active] [ref=e1]:
+  - link "Ir al contenido" [ref=e2] [cursor=pointer]:
+    - /url: "#site-content"
+    - text: Ir al contenido
+    - img [ref=e3]
+  - alert
+  - generic [ref=e16]:
+    - generic [ref=e17]:
+      - generic [ref=e23]:
+        - link "Página de inicio de Airbnb" [ref=e25] [cursor=pointer]:
+          - /url: /
+          - img [ref=e27]
+        - search [ref=e29]:
+          - generic [ref=e31]:
+            - tablist [ref=e33]
+            - search "Empieza tu búsqueda" [ref=e59] [cursor=pointer]
+        - navigation "Perfil" [ref=e82]:
+          - generic [ref=e83]:
+            - button "Conviértete en anfitrión" [ref=e84] [cursor=pointer]
+            - button "Elige un idioma y una moneda" [ref=e87] [cursor=pointer]
+          - button "Menú de navegación principal" [ref=e93] [cursor=pointer]:
+            - img [ref=e95]
+      - main [ref=e98]:
+        - generic [ref=e101]:
+          - generic [ref=e102]:
+            - generic [ref=e110]
+            - generic [ref=e136]
+          - generic [ref=e187]:
+            - generic [ref=e189]
+            - generic [ref=e608]
+          - generic [ref=e758]:
+            - generic [ref=e759]
+            - group [ref=e777]
+            - group "Las evaluaciones de los huéspedes mencionan" [ref=e900]
+            - list [ref=e997]
+          - generic [ref=e1164]:
+            - heading "Dónde vas a estar" [level=2] [ref=e1167]
+            - generic [ref=e1168]: Playa del Carmen, Quintana Roo, México
+          - generic [ref=e1178]:
+            - heading "Conoce a tu anfitrión" [level=2] [ref=e1180]
+            - generic [ref=e1183]
+          - generic [ref=e1281]:
+            - generic [ref=e1282]
+            - list [ref=e1302]
+          - generic [ref=e1398]:
+            - heading "Qué debes saber" [level=2] [ref=e1399]
+            - generic [ref=e1402]
+          - generic [ref=e1445]:
+            - navigation "Ruta de navegación" [ref=e1449]
+            - generic [ref=e1463]
+    - contentinfo [ref=e1531]:
+      - generic [ref=e1533]:
+        - heading "Pie de página del sitio web" [level=2] [ref=e1535]
+        - generic [ref=e1536]:
+          - generic [ref=e1537]:
+            - heading "Asistencia" [level=3] [ref=e1538]
+            - list [ref=e1539]
+          - generic [ref=e1554]:
+            - heading "Cómo ser anfitrión" [level=3] [ref=e1555]
+            - list [ref=e1556]
+          - generic [ref=e1577]:
+            - heading "Airbnb" [level=3] [ref=e1578]
+            - list [ref=e1579]
+        - generic [ref=e1590]:
+          - generic [ref=e1591]: Sección del pie de página
+          - generic [ref=e1593]:
+            - generic [ref=e1595]
+            - generic [ref=e1610]
+  - generic:
+    - iframe

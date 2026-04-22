@@ -1,0 +1,1638 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selvanova — Reporte Competitivo Estratégico</title>
+  <meta name="description" content="Reporte competitivo orientado a ingresos para Gran casa de lujo Sahuaro Selvanova. Análisis de mercado, competidores, estrategia de precios y plan de acción.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts@4.4.0/dist/apexcharts.min.js"></script>
+  <style>
+    :root {
+      --bg-deep: #0a0e17;
+      --bg-surface: #101724;
+      --bg-card: rgba(18, 27, 46, 0.75);
+      --bg-card-hover: rgba(24, 36, 60, 0.85);
+      --glass: rgba(255, 255, 255, 0.04);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --glass-border-hover: rgba(255, 255, 255, 0.14);
+      --text-primary: #f0f2f5;
+      --text-secondary: #9ba4b5;
+      --text-muted: #5d6a7e;
+      --accent-gold: #d4a24e;
+      --accent-gold-glow: rgba(212, 162, 78, 0.25);
+      --accent-teal: #2dd4bf;
+      --accent-teal-glow: rgba(45, 212, 191, 0.2);
+      --accent-rose: #f472b6;
+      --accent-rose-glow: rgba(244, 114, 182, 0.2);
+      --accent-blue: #60a5fa;
+      --accent-blue-glow: rgba(96, 165, 250, 0.2);
+      --accent-violet: #a78bfa;
+      --gradient-gold: linear-gradient(135deg, #d4a24e, #f5c978);
+      --gradient-teal: linear-gradient(135deg, #14b8a6, #2dd4bf);
+      --gradient-hero: linear-gradient(135deg, #0c1829 0%, #162040 40%, #1a1a3e 70%, #0f1628 100%);
+      --shadow-lg: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      --shadow-glow-gold: 0 0 40px rgba(212, 162, 78, 0.15);
+      --shadow-glow-teal: 0 0 40px rgba(45, 212, 191, 0.1);
+      --radius-sm: 12px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --radius-xl: 32px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-deep);
+      color: var(--text-primary);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* ── Background Effects ────────────────── */
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .bg-orbs::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(212, 162, 78, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: floatOrb 20s ease-in-out infinite;
+    }
+    .bg-orbs::after {
+      content: '';
+      position: absolute;
+      bottom: -15%;
+      left: -5%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(45, 212, 191, 0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: floatOrb 25s ease-in-out infinite reverse;
+    }
+    @keyframes floatOrb {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(40px, -30px) scale(1.05); }
+      66% { transform: translate(-20px, 20px) scale(0.95); }
+    }
+
+    /* ── Main Container ────────────────── */
+    .report {
+      position: relative;
+      z-index: 1;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Section Animations ────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Top Bar ────────────────── */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--glass-border);
+      margin-bottom: 0;
+    }
+    .topbar-brand {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .topbar-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .topbar-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      color: var(--text-secondary);
+      backdrop-filter: blur(10px);
+    }
+    .topbar-pill.live {
+      color: var(--accent-teal);
+      border-color: rgba(45, 212, 191, 0.2);
+      background: rgba(45, 212, 191, 0.08);
+    }
+    .topbar-pill.live::before {
+      content: '';
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-teal);
+      margin-right: 6px;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ── Hero ────────────────── */
+    .hero {
+      position: relative;
+      padding: 80px 0 60px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 800px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(212, 162, 78, 0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent-gold);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 32px;
+      height: 2px;
+      background: var(--gradient-gold);
+      border-radius: 2px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      max-width: 18ch;
+      margin-bottom: 20px;
+      text-wrap: balance;
+    }
+    .hero-subtitle {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 65ch;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    /* ── Hero KPI Row ────────────────── */
+    .hero-kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .hero-kpi {
+      position: relative;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(20px);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      overflow: hidden;
+    }
+    .hero-kpi::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 3px 3px 0 0;
+    }
+    .hero-kpi.gold::before { background: var(--gradient-gold); }
+    .hero-kpi.teal::before { background: var(--gradient-teal); }
+    .hero-kpi.rose::before { background: linear-gradient(135deg, #ec4899, #f472b6); }
+    .hero-kpi.blue::before { background: linear-gradient(135deg, #3b82f6, #60a5fa); }
+    .hero-kpi.violet::before { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+    .hero-kpi:hover {
+      border-color: var(--glass-border-hover);
+      box-shadow: var(--shadow-glow-gold);
+    }
+    .kpi-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .kpi-value {
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 6px;
+      background: var(--gradient-gold);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-kpi.teal .kpi-value {
+      background: var(--gradient-teal);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .hero-kpi.rose .kpi-value {
+      background: linear-gradient(135deg, #ec4899, #f472b6);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .hero-kpi.blue .kpi-value {
+      background: linear-gradient(135deg, #3b82f6, #60a5fa);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .hero-kpi.violet .kpi-value {
+      background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+    .kpi-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Section Styling ────────────────── */
+    .section {
+      padding: 64px 0;
+    }
+    .section + .section {
+      border-top: 1px solid var(--glass-border);
+    }
+    .section-eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent-gold);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 2px;
+      background: var(--gradient-gold);
+      border-radius: 2px;
+    }
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      max-width: 30ch;
+      margin-bottom: 12px;
+      text-wrap: balance;
+    }
+    .section-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 70ch;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+    .section-note {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* ── Cards ────────────────── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      border-color: var(--glass-border-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+    .card p {
+      color: var(--text-secondary);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 10px;
+    }
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .card ul li {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 10px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      opacity: 0.6;
+    }
+
+    /* ── Grid Layouts ────────────────── */
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+    .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+
+    /* ── Metric Cards (small) ────────────────── */
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-md);
+      padding: 22px;
+      backdrop-filter: blur(16px);
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .metric-card:hover {
+      border-color: var(--glass-border-hover);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+    }
+    .metric-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-gold);
+      margin-bottom: 8px;
+    }
+    .metric-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+    .metric-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ── Pills / Tags ────────────────── */
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      border-radius: 999px;
+      padding: 7px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border: 1px solid var(--glass-border);
+    }
+    .pill-good {
+      background: rgba(45, 212, 191, 0.1);
+      color: var(--accent-teal);
+      border-color: rgba(45, 212, 191, 0.2);
+    }
+    .pill-warn {
+      background: rgba(212, 162, 78, 0.1);
+      color: var(--accent-gold);
+      border-color: rgba(212, 162, 78, 0.2);
+    }
+    .pill-risk {
+      background: rgba(244, 114, 182, 0.1);
+      color: var(--accent-rose);
+      border-color: rgba(244, 114, 182, 0.2);
+    }
+    .pill-neutral {
+      background: var(--glass);
+      color: var(--text-secondary);
+    }
+
+    /* ── Callout ────────────────── */
+    .callout {
+      position: relative;
+      padding: 20px 24px;
+      border-radius: var(--radius-md);
+      margin: 20px 0;
+      font-size: 14px;
+      line-height: 1.7;
+      border: 1px solid;
+    }
+    .callout.gold {
+      background: rgba(212, 162, 78, 0.06);
+      border-color: rgba(212, 162, 78, 0.2);
+      color: #f5c978;
+    }
+    .callout.risk {
+      background: rgba(244, 114, 182, 0.06);
+      border-color: rgba(244, 114, 182, 0.2);
+      color: #f9a8d4;
+    }
+    .callout.good {
+      background: rgba(45, 212, 191, 0.06);
+      border-color: rgba(45, 212, 191, 0.2);
+      color: #5eead4;
+    }
+    .callout strong {
+      color: var(--text-primary);
+    }
+
+    /* ── Chart Containers ────────────────── */
+    .chart-container {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      overflow: hidden;
+    }
+    .chart-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .chart-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+    }
+
+    /* ── Tables ────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--glass-border);
+      background: var(--bg-card);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th {
+      padding: 14px 12px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-gold);
+      background: rgba(212, 162, 78, 0.04);
+      border-bottom: 1px solid var(--glass-border);
+      white-space: nowrap;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    td {
+      padding: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+    tr:hover td {
+      background: rgba(255,255,255,0.02);
+    }
+    .table-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      padding: 12px 16px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    /* ── Flat Lists ────────────────── */
+    ul.flat {
+      list-style: none;
+      padding: 0;
+    }
+    ul.flat li {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 12px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+    ul.flat li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-gold);
+      opacity: 0.5;
+    }
+    ul.flat li strong {
+      color: var(--text-primary);
+    }
+
+    /* ── Evidence / Links ────────────────── */
+    .sources a {
+      color: var(--accent-teal);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(45, 212, 191, 0.25);
+      transition: border-color 0.2s;
+    }
+    .sources a:hover {
+      border-color: var(--accent-teal);
+    }
+
+    /* ── Footer ────────────────── */
+    .report-footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--glass-border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+    .report-footer span {
+      color: var(--accent-gold);
+    }
+
+    /* ── Dividers ────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+      margin: 16px 0;
+    }
+
+    /* ── Responsive ────────────────── */
+    @media (max-width: 1024px) {
+      .grid-4, .grid-5 { grid-template-columns: repeat(2, 1fr); }
+      .chart-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .hero { padding: 48px 0 40px; }
+      .section { padding: 40px 0; }
+      .grid-2, .grid-3, .grid-4, .grid-5 { grid-template-columns: 1fr; }
+      .chart-grid { grid-template-columns: 1fr; }
+      .hero-kpis { grid-template-columns: 1fr 1fr; }
+      .topbar { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .hero h1 { font-size: 32px; }
+    }
+    @media (max-width: 480px) {
+      .report { padding: 0 16px; }
+      .hero-kpis { grid-template-columns: 1fr; }
+    }
+
+    /* ── TOC inline nav ────────────────── */
+    .toc-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+    .toc-inline a {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass);
+      transition: all 0.25s;
+    }
+    .toc-inline a:hover {
+      color: var(--accent-gold);
+      border-color: rgba(212, 162, 78, 0.3);
+      background: rgba(212, 162, 78, 0.06);
+    }
+    .toc-inline a span {
+      color: var(--accent-gold);
+      margin-right: 4px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Scroll anchor offset */
+    .anchor { scroll-margin-top: 24px; }
+
+    /* ── Action Plan Table enhancements ────────────────── */
+    .window-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .window-badge.urgent {
+      background: rgba(244, 114, 182, 0.12);
+      color: var(--accent-rose);
+    }
+    .window-badge.mid {
+      background: rgba(212, 162, 78, 0.12);
+      color: var(--accent-gold);
+    }
+    .window-badge.long {
+      background: rgba(96, 165, 250, 0.12);
+      color: var(--accent-blue);
+    }
+
+    /* ── Confidence badges ────────────────── */
+    .conf-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .conf-alta {
+      background: rgba(45, 212, 191, 0.12);
+      color: var(--accent-teal);
+    }
+    .conf-media {
+      background: rgba(212, 162, 78, 0.12);
+      color: var(--accent-gold);
+    }
+  </style>
+</head>
+<body>
+
+<div class="bg-orbs"></div>
+
+<div class="report">
+
+  <!-- ═══ TOP BAR ═══ -->
+  <header class="topbar">
+    <div class="topbar-brand">Expediente Estratégico Selvanova</div>
+    <div class="topbar-pills">
+      <span class="topbar-pill live">Extracción en vivo de Airbnb</span>
+      <span class="topbar-pill live">Evidencia AirDNA</span>
+      <span class="topbar-pill">Generado 2026-04-22</span>
+    </div>
+  </header>
+
+  <!-- ═══ TABLE OF CONTENTS ═══ -->
+  <nav class="toc-inline reveal">
+    <a href="#exec-summary"><span>01</span>Resumen ejecutivo</a>
+    <a href="#property-snapshot"><span>02</span>Ficha de la propiedad</a>
+    <a href="#market-overview"><span>03</span>Panorama del mercado</a>
+    <a href="#direct-comps"><span>04</span>Competidores directos</a>
+    <a href="#aspirational-comps"><span>05</span>Aspiracionales</a>
+    <a href="#pricing-visuals"><span>06</span>Visuales de precios</a>
+    <a href="#frontier"><span>07</span>Frontera ocupación/ADR</a>
+    <a href="#amenity-gaps"><span>08</span>Brechas amenidades</a>
+    <a href="#review-intel"><span>09</span>Inteligencia reseñas</a>
+    <a href="#photo-copy"><span>10</span>Auditoría fotos</a>
+    <a href="#friction"><span>11</span>Fricción de reserva</a>
+    <a href="#segments"><span>12</span>Segmentos</a>
+    <a href="#titles-copy"><span>13</span>Títulos y textos</a>
+    <a href="#photo-order"><span>14</span>Orden de fotos</a>
+    <a href="#pricing"><span>15</span>Precios</a>
+    <a href="#action-plan"><span>16</span>Plan 30/60/90</a>
+    <a href="#quick-wins"><span>17</span>Victorias rápidas</a>
+    <a href="#appendix"><span>18</span>Apéndice</a>
+  </nav>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="hero anchor reveal" id="exec-summary">
+    <div class="hero-eyebrow">01 — Lectura ejecutiva</div>
+    <h1>Los ganadores top de Selvanova superan al mercado con confianza, claridad y ajuste práctico.</h1>
+    <p class="hero-subtitle">Tu producto es lo suficientemente fuerte para competir. La brecha de monetización radica principalmente en la ejecución del anuncio: tu precio observado es premium, pero la prueba social sigue siendo limitada y varios beneficios están poco comunicados, mientras que alguna amenidad visible podría ser inexacta.</p>
+
+    <div class="hero-kpis">
+      <div class="hero-kpi gold">
+        <div class="kpi-label">Precio proxy observado</div>
+        <div class="kpi-value">$2,851</div>
+        <div class="kpi-desc">MXN / noche en búsqueda con solo 4 reseñas.</div>
+      </div>
+      <div class="hero-kpi teal">
+        <div class="kpi-label">Top 5 ingreso anual</div>
+        <div class="kpi-value">$434K</div>
+        <div class="kpi-desc">Promedio entre los mejores del micromercado, ~73% ocupación.</div>
+      </div>
+      <div class="hero-kpi rose">
+        <div class="kpi-label">Posición de precio</div>
+        <div class="kpi-value">+58.9%</div>
+        <div class="kpi-desc">Por encima de la mediana directa de propiedades comparables en Selvanova.</div>
+      </div>
+      <div class="hero-kpi blue">
+        <div class="kpi-label">Brecha de confianza</div>
+        <div class="kpi-value">−56</div>
+        <div class="kpi-desc">Reseñas por debajo de la mediana directa. Principal freno.</div>
+      </div>
+      <div class="hero-kpi violet">
+        <div class="kpi-label">Fortaleza central</div>
+        <div class="kpi-value">3BR+</div>
+        <div class="kpi-desc">3 recámaras, albercas, estacionamiento. Producto fuerte.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 02. PROPERTY SNAPSHOT ═══ -->
+  <section class="section anchor reveal" id="property-snapshot">
+    <div class="section-eyebrow">02 — Ficha de la propiedad</div>
+    <h2>Lo que está vendiendo la ficha hoy</h2>
+    <p class="section-desc">Ingeniería inversa de la ficha pública de <em>Gran casa de lujo Sahuaro Selvanova</em> en Airbnb.</p>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>Hechos principales observados</h3>
+        <ul>
+          <li>6 huéspedes · 3 recámaras · 4 camas · 2 baños</li>
+          <li>Calificación 5.0 con 4 reseñas</li>
+          <li>Perfil verificado · Respuesta: 100%</li>
+          <li>Llegada autónoma con candado inteligente</li>
+          <li>Playa del Carmen, Quintana Roo, México</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Lo que ya funciona</h3>
+        <div class="pill-row" style="margin-bottom: 14px;">
+          <span class="pill pill-good">3 recámaras</span>
+          <span class="pill pill-good">4 albercas</span>
+          <span class="pill pill-good">Estacionamiento privado</span>
+          <span class="pill pill-good">Llegada autónoma</span>
+          <span class="pill pill-good">Área de trabajo</span>
+          <span class="pill pill-good">Acceso al gimnasio</span>
+        </div>
+        <p>110 m² con terraza privada, sala con 75" Cinema TV, comedores exteriores, áreas verdes, 2 Gym, 2 BBQ, kids & teens club, seguridad 24h.</p>
+      </div>
+      <div class="card">
+        <h3>Snapshot de confianza y fricción</h3>
+        <ul>
+          <li>Precio proxy nocturno: <strong>$2,851 MXN</strong></li>
+          <li>Temas: Hospitalidad, Comodidad, Ubicación, Amenidades, Calidad de sueño, Familiar, Limpieza</li>
+          <li>Check-in: 4:00 p.m. · Check-out: 11:00 a.m.</li>
+          <li>Cancelación: texto exacto no disponible en payload extraído</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 03. MARKET OVERVIEW ═══ -->
+  <section class="section anchor reveal" id="market-overview">
+    <div class="section-eyebrow">03 — Panorama del mercado Selvanova</div>
+    <h2>AirDNA confirma que esta es una base residencial práctica, no un mercado de franja playera</h2>
+    <p class="section-desc">Submercado principal: Misión de las Flores / área Selvanova.</p>
+
+    <div class="grid-4">
+      <div class="metric-card">
+        <div class="metric-label">Puntuación submercado</div>
+        <div class="metric-value">59</div>
+        <div class="metric-note">Demanda 48 · Crecimiento 50 · Estacionalidad 90 · Regulación 81</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Ingreso promedio</div>
+        <div class="metric-value">$194K</div>
+        <div class="metric-note">-8.4% último año</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">ADR promedio</div>
+        <div class="metric-value">$1.0K</div>
+        <div class="metric-note">-4.1% último año</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Ocupación promedio</div>
+        <div class="metric-value">54%</div>
+        <div class="metric-note">-5.3% sobre 414 anuncios activos</div>
+      </div>
+    </div>
+
+    <!-- Submarket Score Breakdown Chart -->
+    <div class="chart-grid" style="margin-top: 24px;">
+      <div class="chart-container">
+        <div class="chart-title">Desglose de puntuación del submercado</div>
+        <div class="chart-subtitle">Componentes del puntaje AirDNA para Misión de las Flores</div>
+        <div id="chart-submarket-score"></div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">Submercados de Playa del Carmen</div>
+        <div class="chart-subtitle">Ranking por ingreso promedio reportado en AirDNA</div>
+        <div id="chart-submarkets"></div>
+      </div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 24px;">
+      <div class="card">
+        <h3>Insights de huéspedes de AirDNA</h3>
+        <p>Misión de las Flores se caracteriza por su ambiente familiar y por áreas residenciales amplias y seguras. Los huéspedes suelen describir la zona como tranquila y segura. La cercanía a supermercados, restaurantes y comida local suma conveniencia, permitiendo que los visitantes se sientan como en casa.</p>
+      </div>
+      <div class="card">
+        <h3>Lectura estratégica</h3>
+        <ul>
+          <li>El ingreso promedio es $194K, pero las mejores fichas 3BR se agrupan alrededor de <strong>$434K</strong> con más confianza y ajuste familiar.</li>
+          <li>Lead time observado: <strong>45 días</strong>. Estancia promedio: <strong>7 días</strong>.</li>
+          <li>Los temas refuerzan: seguridad, albercas, comodidad familiar, tranquilidad y conveniencia.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top: 16px;">
+      <div class="card">
+        <h3>Lo que más gusta</h3>
+        <ul>
+          <li>Zona residencial tranquila y segura</li>
+          <li>Cercanía a supermercados y comida local</li>
+          <li>Entorno amigable para familias</li>
+          <li>Amenidades bien mantenidas</li>
+          <li>Acceso fácil a atracciones cercanas</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Amenidades esperadas</h3>
+        <ul>
+          <li>Albercas</li>
+          <li>Privadas cerradas con seguridad</li>
+          <li>Áreas de juegos para niños</li>
+          <li>Áreas de BBQ</li>
+          <li>Instalaciones fitness</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Objeciones comunes</h3>
+        <ul>
+          <li>Distancia a la playa y zonas turísticas</li>
+          <li>Presión de agua inconsistente</li>
+          <li>Cortes de energía ocasionales</li>
+          <li>Mantenimiento en algunas propiedades</li>
+          <li>Transporte público limitado</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Top Performers Table -->
+    <div style="margin-top: 24px;">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Recámaras</th>
+              <th>Capacidad</th>
+              <th>Rating</th>
+              <th>Ingreso AirDNA</th>
+              <th>Ocupación</th>
+              <th>ADR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Madeiras Apt. Relax New, Selvanova coto 11</td><td>3</td><td>8</td><td>5.0</td><td>$483K</td><td>74%</td><td>$2.0K</td></tr>
+            <tr><td>Charming family apartment/3BR/6pax/gym/pool</td><td>3</td><td>6</td><td>5.0</td><td>$440K</td><td>70%</td><td>$2.0K</td></tr>
+            <tr><td>Elegant House 3 Bedrooms@Selvanova</td><td>3</td><td>12</td><td>4.9</td><td>$425K</td><td>72%</td><td>$2.0K</td></tr>
+            <tr><td>Casa Tortuga | 10min to Caribe~WIFI 200MB</td><td>3</td><td>8</td><td>5.0</td><td>$415K</td><td>69%</td><td>$2.0K</td></tr>
+            <tr><td>Stylish House w/Car. 7min from beach</td><td>3</td><td>10</td><td>4.8</td><td>$408K</td><td>81%</td><td>$1.0K</td></tr>
+          </tbody>
+        </table>
+        <div class="table-caption">Top performers: la evidencia más cercana de la frontera de ingresos a la que quieres entrar.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 04. DIRECT COMPS ═══ -->
+  <section class="section anchor reveal" id="direct-comps">
+    <div class="section-eyebrow">04 — Competidores directos</div>
+    <h2>Competencia más cercana para la misma misión de reserva</h2>
+    <p class="section-desc">Competidores directos priorizando cercanía en Selvanova, formato de 3 recámaras para familias/grupos e inventario tipo apartamento/condominio.</p>
+
+    <!-- Interactive Comparison Chart -->
+    <div class="chart-container" style="margin-bottom: 24px;">
+      <div class="chart-title">Comparación de competidores directos</div>
+      <div class="chart-subtitle">Puntajes proxy por dimensión clave de cada competidor</div>
+      <div id="chart-comps-radar"></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Precio/noche</th>
+            <th>Rating</th>
+            <th>Reseñas</th>
+            <th>Dist. km</th>
+            <th>Huésp.</th>
+            <th>Ingresos proxy</th>
+            <th>Confianza</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>NUEVO Colibri Coto11 |12min playa</td><td>$2,269</td><td>4.9</td><td>40</td><td>0.6</td><td>6</td><td>84.5</td><td>100</td><td>67.8</td></tr>
+          <tr><td>CasaOaxaca|Paraíso familiar|10 min</td><td>$2,102</td><td>4.9</td><td>79</td><td>0.5</td><td>6</td><td>83.7</td><td>100</td><td>72.7</td></tr>
+          <tr><td>CondoFamiliar|10min Playa|WIFI|Gym</td><td>$2,206</td><td>4.9</td><td>68</td><td>0.6</td><td>6</td><td>83.2</td><td>100</td><td>68.8</td></tr>
+          <tr><td>Apto 3 hab + alberca + gym + asador</td><td>$1,684</td><td>5.0</td><td>40</td><td>0.4</td><td>6</td><td>80.0</td><td>100</td><td>78.7</td></tr>
+          <tr><td>Depto de Lujo en conjunto residencial</td><td>$1,891</td><td>4.9</td><td>118</td><td>0.5</td><td>6</td><td>79.9</td><td>100</td><td>69.8</td></tr>
+          <tr><td>Vista alberca + balcón + 3 hab</td><td>$1,654</td><td>4.9</td><td>64</td><td>0.3</td><td>6</td><td>79.8</td><td>100</td><td>79.2</td></tr>
+          <tr><td>Apto acogedor + lavadora + 3 hab</td><td>$1,852</td><td>4.9</td><td>108</td><td>0.3</td><td>6</td><td>79.8</td><td>100</td><td>74.7</td></tr>
+          <tr><td>Xelva</td><td>$1,736</td><td>4.8</td><td>25</td><td>0.7</td><td>6</td><td>79.3</td><td>99.7</td><td>74.4</td></tr>
+          <tr><td>Apartamento a 10 min de la playa</td><td>$1,693</td><td>4.8</td><td>18</td><td>0.6</td><td>6</td><td>78.4</td><td>95.8</td><td>75.3</td></tr>
+          <tr><td>Depto bonito a 10 min de la 5ta.</td><td>$1,455</td><td>4.8</td><td>55</td><td>0.6</td><td>6</td><td>78.2</td><td>100</td><td>82.5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══ 05. ASPIRATIONAL COMPS ═══ -->
+  <section class="section anchor reveal" id="aspirational-comps">
+    <div class="section-eyebrow">05 — Competidores aspiracionales</div>
+    <h2>Anuncios que marcan la pauta en confianza, claridad y monetización</h2>
+    <p class="section-desc">Los competidores aspiracionales se mantienen enfocados en la misma misión del huésped. Muestran cómo se ve una ejecución más sólida sin desviarse hacia inventario irreal de villas de lujo.</p>
+
+    <div class="chart-container">
+      <div class="chart-title">Precio vs Número de reseñas — Competidores aspiracionales</div>
+      <div class="chart-subtitle">Burbuja = puntaje proxy de ingresos. Tu ficha en dorado.</div>
+      <div id="chart-aspirational-bubble"></div>
+    </div>
+  </section>
+
+  <!-- ═══ 06. PRICING VISUALS ═══ -->
+  <section class="section anchor reveal" id="pricing-visuals">
+    <div class="section-eyebrow">06 — Visuales de ingresos y precios</div>
+    <h2>Dónde la actual estrategia de precios es vulnerable</h2>
+    <p class="section-desc">Estas gráficas combinan puntos de precio observados en Airbnb con puntajes de reseñas/confianza y valor. No sustituyen los datos reales de conversión del panel de control, pero sí son útiles direccionalmente.</p>
+
+    <div class="chart-grid">
+      <div class="chart-container">
+        <div class="chart-title">Precio nocturno vs Fortaleza de confianza</div>
+        <div class="chart-subtitle">Puntaje de confianza basado en volumen y calificación de reseñas</div>
+        <div id="chart-price-trust"></div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">Precio nocturno vs Señal de valor por dinero</div>
+        <div class="chart-subtitle">Relación entre lo que se cobra y lo que el huésped percibe como valor</div>
+        <div id="chart-price-value"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 07. FRONTIER ═══ -->
+  <section class="section anchor reveal" id="frontier">
+    <div class="section-eyebrow">07 — Frontera de ocupación / ADR</div>
+    <h2>La mejor estimación del reporte sobre la frontera de ingresos</h2>
+    <div class="callout good">
+      <strong>Interpretación de alta confianza:</strong> Tu anuncio ya tiene el precio de un líder establecido, pero el nivel de confianza sigue viéndose como el de un anuncio nuevo. Ese desajuste es el problema central a resolver para ser competitivo.
+    </div>
+
+    <div class="chart-grid">
+      <div class="chart-container">
+        <div class="chart-title">Precio vs Proxy de ocupación</div>
+        <div class="chart-subtitle">Relación entre precio y demanda estimada</div>
+        <div id="chart-price-occupancy"></div>
+      </div>
+      <div class="chart-container">
+        <div class="chart-title">Ranking proxy de fortaleza de ingresos</div>
+        <div class="chart-subtitle">Puntaje compuesto que resume monetización estimada</div>
+        <div id="chart-revenue-ranking"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 08. AMENITY GAPS ═══ -->
+  <section class="section anchor reveal" id="amenity-gaps">
+    <div class="section-eyebrow">08 — Análisis de brechas de amenidades</div>
+    <h2>Lo que importa no es solo tener amenidades, sino demostrar las correctas rápidamente</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>✅ Ya fuerte</h3>
+        <div class="pill-row">
+          <span class="pill pill-good">3 recámaras</span>
+          <span class="pill pill-good">4 albercas</span>
+          <span class="pill pill-good">Estacionamiento privado</span>
+          <span class="pill pill-good">Llegada autónoma</span>
+          <span class="pill pill-good">Área de trabajo</span>
+          <span class="pill pill-good">Acceso al gimnasio</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>⚠️ Subcomunicado o riesgoso</h3>
+        <div class="pill-row">
+          <span class="pill pill-risk">Verificar amenidad waterfront</span>
+          <span class="pill pill-warn">Publicar velocidad Wi‑Fi</span>
+          <span class="pill pill-warn">Mayor volumen de reseñas</span>
+          <span class="pill pill-warn">Reconstruir primeras 5 fotos</span>
+          <span class="pill pill-warn">Liderar con estacionamiento + 10 min</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Amenity Completeness Radar -->
+    <div class="chart-container" style="margin-top: 24px;">
+      <div class="chart-title">Completitud de amenidades vs Top 3 competidores</div>
+      <div class="chart-subtitle">Puntajes normalizados por categoría</div>
+      <div id="chart-amenity-radar"></div>
+    </div>
+
+    <div class="grid-2" style="margin-top: 16px;">
+      <div class="card">
+        <h3>Brechas críticas de comunicación</h3>
+        <ul>
+          <li>Prueba de velocidad de Wi‑Fi y del área de trabajo</li>
+          <li>Claridad sobre estacionamiento y llegada</li>
+          <li>Acomodo de descanso por recámara</li>
+          <li>Explicar antes para quién es ideal</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Mejoras de bajo costo</h3>
+        <ul>
+          <li>Guía de llegada con estacionamiento y ruta</li>
+          <li>Toallas de playa / hielera si siempre disponibles</li>
+          <li>Kit de conveniencia familiar</li>
+          <li>Captura Wi‑Fi, imagen del workspace</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 09. REVIEW INTEL ═══ -->
+  <section class="section anchor reveal" id="review-intel">
+    <div class="section-eyebrow">09 — Inteligencia de reseñas</div>
+    <h2>Lo que los huéspedes ya premian y sobre lo que probablemente girarán las futuras quejas</h2>
+
+    <div class="chart-grid">
+      <div class="chart-container">
+        <div class="chart-title">Temas recurrentes de elogio</div>
+        <div class="chart-subtitle">Frecuencia de mención en las 4 reseñas disponibles</div>
+        <div id="chart-review-praise"></div>
+      </div>
+      <div class="card">
+        <h3>Temas probables de queja a prevenir</h3>
+        <ul>
+          <li>Distancia a la playa y las zonas turísticas</li>
+          <li>Presión de agua inconsistente en algunas propiedades</li>
+          <li>Cortes de energía ocasionales en horas pico</li>
+          <li>Necesidad de mejor mantenimiento en algunas propiedades</li>
+          <li>Opciones limitadas de transporte público</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 10. PHOTO/COPY AUDIT ═══ -->
+  <section class="section anchor reveal" id="photo-copy">
+    <div class="section-eyebrow">10 — Auditoría de fotos y redacción del anuncio</div>
+    <h2>El anuncio debe vender comodidad grupal, amplitud y calma en los primeros 10 segundos</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Narrativa fotográfica observada</h3>
+        <p>La galería actual vende <strong>amplitud y confort compartido</strong>. Los ganadores cercanos aterrizan una promesa emocional más clara: más espacio, noches más tranquilas, estacionamiento más fácil y una base práctica para familias/grupos.</p>
+        <p style="font-size: 12px; color: var(--text-muted);">Primeras cinco categorías observadas: sala, sala, sala, sala, sala</p>
+      </div>
+      <div class="card">
+        <h3>Promesa visual recomendada</h3>
+        <ul>
+          <li><strong>Portada:</strong> sala luminosa y amplia + terraza, o encuadre sala + comedor</li>
+          <li><strong>Primera secuencia:</strong> amplitud, alberca, recámara principal, cocina, plan de descanso, estacionamiento/seguridad</li>
+          <li><strong>Tema de caption:</strong> "3 recámaras para familias y grupos, 4 albercas, estacionamiento privado, llegada autónoma, a 10 min en auto."</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 11. FRICTION ═══ -->
+  <section class="section anchor reveal" id="friction">
+    <div class="section-eyebrow">11 — Auditoría de fricción de reserva</div>
+    <h2>Dónde un huésped podría dudar antes de reservar</h2>
+    <div class="callout risk">
+      <strong>Principal alerta de fricción:</strong> Verifica o elimina la amenidad tipo waterfront, y luego haz que la primera pantalla explique mejor estacionamiento, llegada autónoma y acceso a 10 minutos en auto.
+    </div>
+    <ul class="flat">
+      <li><strong>Fricción por tarifas:</strong> compara tu precio total con los precios cercanos de 3 recámaras antes de intentar defender un premium.</li>
+      <li><strong>Fricción de confianza:</strong> 4 reseñas sigue siendo poca prueba social para una opción Selvanova con precio premium.</li>
+      <li><strong>Fricción de ubicación:</strong> la ficha debe decir "10 minutos en auto" desde el inicio.</li>
+      <li><strong>Fricción de amenidades:</strong> demuestra visualmente Wi‑Fi, estacionamiento, acomodo de descanso y seguridad.</li>
+    </ul>
+  </section>
+
+  <!-- ═══ 12. SEGMENTS ═══ -->
+  <section class="section anchor reveal" id="segments">
+    <div class="section-eyebrow">12 — Playbook de segmentos de huéspedes</div>
+    <h2>Véndele a los huéspedes para quienes Selvanova encaja de forma natural</h2>
+
+    <div class="grid-3">
+      <div class="card">
+        <h3>👨‍👩‍👧‍👦 Familias</h3>
+        <p><strong>Posicionamiento:</strong> Lidera con layout 3BR, albercas, kids club, estacionamiento, cocina y confort.</p>
+        <p><strong>Objeción a eliminar:</strong> Aclara que la playa está a ~10 min en auto.</p>
+        <p><strong>Debe mostrar:</strong> Camas por recámara, albercas, terraza, mesa de comedor, estacionamiento y llegada autónoma.</p>
+      </div>
+      <div class="card">
+        <h3>🎉 Grupos de amigos</h3>
+        <p><strong>Posicionamiento:</strong> Recámaras privadas + áreas comunes + trayectos fáciles a Quinta.</p>
+        <p><strong>Objeción a eliminar:</strong> Elimina incertidumbre sobre estacionamiento, rideshare y distribución para dormir.</p>
+        <p><strong>Debe mostrar:</strong> Sala, separación entre recámaras, alberca, comedor exterior, smart TV.</p>
+      </div>
+      <div class="card">
+        <h3>🏠 Estancias largas</h3>
+        <p><strong>Posicionamiento:</strong> Cocina, lavandería, área de trabajo, A/C, entorno residencial tranquilo.</p>
+        <p><strong>Objeción a eliminar:</strong> Publica velocidad Wi‑Fi y superficie lista para trabajo remoto.</p>
+        <p><strong>Debe mostrar:</strong> Área de trabajo, captura Wi‑Fi, lavadora/secadora, almacenamiento en cocina.</p>
+      </div>
+      <div class="card">
+        <h3>🚗 Viajeros de parques</h3>
+        <p><strong>Posicionamiento:</strong> Base práctica para playa, parques, cenotes y salidas por la ciudad.</p>
+        <p><strong>Objeción a eliminar:</strong> Auto o rideshare es la forma más fácil de moverse.</p>
+        <p><strong>Debe mostrar:</strong> Estacionamiento, llegada autónoma, arribo tranquilo y una descripción práctica de la ubicación.</p>
+      </div>
+      <div class="card">
+        <h3>💰 Compradores de espacio</h3>
+        <p><strong>Posicionamiento:</strong> Compáralo contra pagar varias habitaciones de hotel o un 2BR compacto.</p>
+        <p><strong>Objeción a eliminar:</strong> Por qué la ubicación tierra adentro vale por espacio y amenidades.</p>
+        <p><strong>Debe mostrar:</strong> Sensación de m², terraza, plan de camas, albercas y amenidades familiares.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 13. TITLES / COPY ═══ -->
+  <section class="section anchor reveal" id="titles-copy">
+    <div class="section-eyebrow">13 — Títulos recomendados y textos reescritos</div>
+    <h2>Lidera con el ajuste del huésped, no con lenguaje genérico de lujo</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Opciones de título</h3>
+        <ul>
+          <li>Selvanova 3 recámaras para familias | Albercas, estacionamiento, playa a 10 min</li>
+          <li>Amplio 3 recámaras en Selvanova | 4 albercas, gimnasio, estacionamiento privado</li>
+          <li>Tranquilo 3 recámaras en Selvanova | Ideal para familias, llegada autónoma</li>
+          <li>Base 3 recámaras en Playa desde Selvanova | Albercas, A/C, estacionamiento</li>
+          <li>Condo familiar en Selvanova | 3 recámaras, terraza, playa a 10 min</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Lo que el huésped debe entender en 10 segundos</h3>
+        <ul>
+          <li>3 recámaras, 2 baños, hasta 6 huéspedes: ajuste claro para familias y grupos.</li>
+          <li>Entorno residencial tranquilo con 4 albercas, gimnasio, kids club, BBQ y estacionamiento privado.</li>
+          <li>10 minutos en auto a la playa y Quinta Avenida.</li>
+          <li>Llegada autónoma, cocina completa, lavandería, A/C y sala grande de TV.</li>
+          <li>Más espacio, noches más tranquilas y logística más fácil que un condo compacto del centro.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-top: 16px;">
+      <div class="card">
+        <h3>🏡 Redacción — Familias</h3>
+        <p><strong>EN:</strong> Spacious 3-bedroom apartment in Selvanova Residencial, built for families who want a calmer base. 4 pools, gym, private parking, self check-in, full kitchen, laundry, AC in every bedroom.</p>
+        <p><strong>ES:</strong> Departamento amplio de 3 recámaras en Selvanova, ideal para familias que buscan una base más tranquila en Playa del Carmen.</p>
+      </div>
+      <div class="card">
+        <h3>🎯 Redacción — Amigos y grupos</h3>
+        <p><strong>EN:</strong> Traveling with friends or another couple? This 3BR gives your group real separation, shared space, pools, parking, and easy car access to the beach.</p>
+        <p><strong>ES:</strong> ¿Viajas con amigos? Este 3BR ofrece privacidad real, áreas comunes cómodas, albercas, estacionamiento y acceso práctico.</p>
+      </div>
+      <div class="card">
+        <h3>⏳ Redacción — Estancias largas</h3>
+        <p><strong>EN:</strong> A practical Riviera Maya launchpad for longer stays: reliable self check-in, workspace, laundry, kitchen, AC, parking, and a residential setting.</p>
+        <p><strong>ES:</strong> Una base práctica en la Riviera Maya para estancias más largas: llegada autónoma, área de trabajo, lavandería, cocina y entorno residencial tranquilo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 14. PHOTO ORDER ═══ -->
+  <section class="section anchor reveal" id="photo-order">
+    <div class="section-eyebrow">14 — Orden recomendado de fotos</div>
+    <h2>Construye el clic y la conversión en la misma secuencia</h2>
+
+    <div class="chart-container" style="margin-bottom: 24px;">
+      <div class="chart-title">Secuencia óptima de galería</div>
+      <div class="chart-subtitle">Orden recomendado de fotos para maximizar conversión</div>
+      <div id="chart-photo-sequence"></div>
+    </div>
+
+    <ul class="flat">
+      <li>Hero shot de sala luminosa + terraza, con el departamento sintiéndose abierto.</li>
+      <li>Imagen limpia de estilo de vida en alberca que se sienta lista para familias.</li>
+      <li>Recámara principal con tamaño de cama y luz natural claramente visibles.</li>
+      <li>Tomas de segunda y tercera recámara que prueben plan de descanso del grupo.</li>
+      <li>Cocina + comedor listo para comida real.</li>
+      <li>Toma de estacionamiento privado y acceso controlado.</li>
+      <li>Imagen que pruebe workspace / Wi‑Fi.</li>
+      <li>Imagen de contexto local: playa y Quinta a 10 min en auto.</li>
+    </ul>
+  </section>
+
+  <!-- ═══ 15. PRICING RECS ═══ -->
+  <section class="section anchor reveal" id="pricing">
+    <div class="section-eyebrow">15 — Recomendaciones de precios</div>
+    <h2>Monetiza como un líder del mercado solo después de alcanzar el nivel de confianza de un líder</h2>
+    <ul class="flat">
+      <li><strong>Sostén un premium solo cuando mejore la confianza:</strong> El precio observado coloca el anuncio ~58.9% por encima de la mediana directa. Con solo 4 reseñas, los precios premium necesitan pruebas sociales más sólidas.</li>
+      <li><strong>Prueba un precio de entrada más bajo hasta doble dígito de reseñas:</strong> Un precio más atractivo puede reducir el lastre del volumen de reseñas y acelerar prueba social.</li>
+      <li><strong>Audita la carga de tarifas:</strong> Los resultados de búsqueda muestran totales con tarifas incluidas. Si el precio final parece alto, la conversión sufrirá.</li>
+      <li><strong>Mantén la llegada autónoma visible:</strong> Esto es un activo de conversión. Reduce fricción de llegada.</li>
+      <li><strong>Revisa configuración de cancelación:</strong> Si es más estricta que los competidores cercanos, una opción más flexible ayuda a un anuncio nuevo.</li>
+    </ul>
+  </section>
+
+  <!-- ═══ 16. ACTION PLAN ═══ -->
+  <section class="section anchor reveal" id="action-plan">
+    <div class="section-eyebrow">16 — Plan de acción 30/60/90 días</div>
+    <h2>Qué hacer ahora, después y tras la próxima ola de reseñas</h2>
+
+    <!-- Timeline Chart -->
+    <div class="chart-container" style="margin-bottom: 24px;">
+      <div class="chart-title">Línea de tiempo de acciones por ventana</div>
+      <div class="chart-subtitle">Impacto estimado de cada acción sobre métricas clave</div>
+      <div id="chart-action-timeline"></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Ventana</th>
+            <th>Qué cambiar</th>
+            <th>Por qué importa</th>
+            <th>Impacto</th>
+            <th>Confianza</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><span class="window-badge urgent">0-7 días</span></td><td>Verifica y elimina amenidad 'Frente al agua' si inexacta</td><td>Un depto Selvanova no debería arriesgar decepción del huésped con señal waterfront</td><td>Reseñas, conversión</td><td><span class="conf-badge conf-alta">Alta</span></td></tr>
+          <tr><td><span class="window-badge urgent">0-7 días</span></td><td>Reemplaza el título con texto enfocado en el huésped</td><td>El título actual es genérico comparado con los mejores de Selvanova</td><td>Conversión</td><td><span class="conf-badge conf-alta">Alta</span></td></tr>
+          <tr><td><span class="window-badge urgent">0-7 días</span></td><td>Reordena primeras 8 fotos</td><td>Ganar en segundos la decisión de '¿mi grupo cabrá?'</td><td>Conversión, CTR</td><td><span class="conf-badge conf-alta">Alta</span></td></tr>
+          <tr><td><span class="window-badge urgent">0-7 días</span></td><td>Agrega prueba Wi‑Fi y workspace a galería</td><td>Compite por estancias largas y trabajo remoto</td><td>Ocupación</td><td><span class="conf-badge conf-media">Media</span></td></tr>
+          <tr><td><span class="window-badge mid">8-30 días</span></td><td>Empuja 8-12 reseñas de alta calidad</td><td>Precio 58.9% arriba de la mediana con solo 4 reseñas</td><td>Conversión, ranking, ADR</td><td><span class="conf-badge conf-alta">Alta</span></td></tr>
+          <tr><td><span class="window-badge mid">8-30 días</span></td><td>Ajusta escalera de precios</td><td>Intercambiar ADR por momentum de reseñas</td><td>Ocupación, reseñas</td><td><span class="conf-badge conf-media">Media</span></td></tr>
+          <tr><td><span class="window-badge mid">8-30 días</span></td><td>Construye una sólida base de confianza familiar</td><td>Pequeños toques operativos crean la siguiente ola de etiquetas</td><td>Reseñas, conversión</td><td><span class="conf-badge conf-media">Media</span></td></tr>
+          <tr><td><span class="window-badge long">31-90 días</span></td><td>Prueba A/B de foto de portada</td><td>La imagen ganadora mejora CTR sin descontar</td><td>CTR, conversión</td><td><span class="conf-badge conf-media">Media</span></td></tr>
+          <tr><td><span class="window-badge long">31-90 días</span></td><td>Fortalece señales de autoridad del hosting</td><td>La confianza es la brecha, no las amenidades</td><td>Reseñas, ADR</td><td><span class="conf-badge conf-alta">Alta</span></td></tr>
+          <tr><td><span class="window-badge long">31-90 días</span></td><td>Revisa cancelación, estancia mínima y tarifas</td><td>Ajuste de monetización dentro del panel de control</td><td>Conversión, ocupación</td><td><span class="conf-badge conf-media">Media</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══ 17. QUICK WINS ═══ -->
+  <section class="section anchor reveal" id="quick-wins">
+    <div class="section-eyebrow">17 — Victorias rápidas de alta confianza</div>
+    <h2>Cambios sin arrepentimiento que deberían mejorar rápido la conversión</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <ul>
+          <li>Verifica de inmediato la amenidad 'Frente al agua'; elimínala si es inexacta.</li>
+          <li>Cambia el título de lenguaje genérico a posicionamiento guiado por ajuste.</li>
+          <li>Mueve prueba de alberca, sala y recámaras a las primeras 5 fotos.</li>
+          <li>Publica captura de velocidad Wi‑Fi y foto del workspace.</li>
+          <li>Declara '10 minutos en auto a la playa y a Quinta' desde el inicio.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <ul>
+          <li>Lidera con estacionamiento privado y llegada autónoma en la primera pantalla.</li>
+          <li>Agrega etiquetas de camas por recámara en captions o descripción.</li>
+          <li>Usa temas de reseñas como comodidad, hospitalidad y familia en la descripción.</li>
+          <li>Afila posicionamiento familiar/grupal en lugar de sonar beachfront.</li>
+          <li>Audita carga de tarifas y precio de entrada de fin de semana.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 18. APPENDIX ═══ -->
+  <section class="section anchor reveal" id="appendix">
+    <div class="section-eyebrow">18 — Apéndice</div>
+    <h2>Qué se observó directamente, qué se infirió y qué quedó bloqueado</h2>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Campos bloqueados o no disponibles</h3>
+        <ul>
+          <li>AirDNA: overview accesible, pero ficha específica y API crudos no exportados</li>
+          <li>Monedas AirDNA abreviadas; valores citados tal como se observaron</li>
+          <li>Texto exacto de política de cancelación no expuesto en payload público</li>
+          <li>Conceptos de limpieza e impuestos no expuestos consistentemente</li>
+          <li>Tags de reseñas más fiables que texto completo de reseñas</li>
+          <li>Sin datos del panel de control: tasa de impresiones, CTR, tasa de conversión</li>
+        </ul>
+      </div>
+      <div class="card sources">
+        <h3>Artefactos observados</h3>
+        <ul>
+          <li><a href="artifacts/my_listing_airbnb_full.png">Captura de la ficha principal</a></li>
+          <li><a href="artifacts/airbnb_search_selvanova.png">Captura de búsqueda Selvanova</a></li>
+          <li><a href="artifacts/airdna_submarket_overview.png">Overview de AirDNA</a></li>
+          <li><a href="artifacts/airdna_submarket_occupancy.png">Ocupación de AirDNA</a></li>
+          <li><a href="artifacts/airdna_submarket_snapshot.json">JSON del snapshot AirDNA</a></li>
+          <li><a href="artifacts/my_listing_snapshot.md">Snapshot de ficha Airbnb</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="section-note sources">Outputs estructurados: <code>output/selvanova_comps.csv</code>, <code>output/selvanova_comps.json</code>, <code>output/notes.md</code>. Observaciones AirDNA en <code>output/artifacts/airdna_submarket_snapshot.json</code>.</p>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="report-footer">
+    <p><span>Selvanova</span> — Reporte Competitivo Estratégico · Generado 2026-04-22 · Datos observados de Airbnb y AirDNA</p>
+  </footer>
+
+</div>
+
+<!-- ═══ APEXCHARTS INITIALIZATION ═══ -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  // ── Color palette ──
+  const gold   = '#d4a24e';
+  const teal   = '#2dd4bf';
+  const rose   = '#f472b6';
+  const blue   = '#60a5fa';
+  const violet = '#a78bfa';
+  const myColor = '#d4a24e';
+  const compColorDirect = '#2dd4bf';
+  const compColorAsp = '#f472b6';
+
+  const chartDefaults = {
+    chart: { toolbar: { show: false }, background: 'transparent', fontFamily: 'Inter, sans-serif' },
+    theme: { mode: 'dark' },
+    grid: { borderColor: 'rgba(255,255,255,0.06)', strokeDashArray: 4 },
+    legend: { labels: { colors: '#9ba4b5' }, fontSize: '12px' },
+    tooltip: { theme: 'dark', style: { fontSize: '12px' } },
+    xaxis: { labels: { style: { colors: '#5d6a7e', fontSize: '11px' } }, axisBorder: { show: false }, axisTicks: { show: false } },
+    yaxis: { labels: { style: { colors: '#5d6a7e', fontSize: '11px' } } },
+  };
+
+  // ── 1. Submarket Score Breakdown (Radial Bar) ──
+  new ApexCharts(document.querySelector('#chart-submarket-score'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'radialBar', height: 320 },
+    series: [48, 50, 90, 81],
+    labels: ['Demanda de renta', 'Crecimiento ingresos', 'Estacionalidad', 'Regulación'],
+    plotOptions: {
+      radialBar: {
+        hollow: { size: '32%', background: 'transparent' },
+        track: { background: 'rgba(255,255,255,0.04)', strokeWidth: '100%' },
+        dataLabels: {
+          name: { fontSize: '13px', color: '#9ba4b5', offsetY: -4 },
+          value: { fontSize: '22px', fontWeight: 800, color: '#f0f2f5', formatter: v => Math.round(v) },
+          total: { show: true, label: 'Total', color: '#9ba4b5', fontSize: '12px', formatter: () => '59' }
+        }
+      }
+    },
+    colors: [rose, gold, teal, blue],
+    stroke: { lineCap: 'round' },
+  }).render();
+
+  // ── 2. Submarkets Bar Chart ──
+  new ApexCharts(document.querySelector('#chart-submarkets'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'bar', height: 320 },
+    series: [{ name: 'Ingreso promedio ($K MXN)', data: [676, 437, 380, 277, 274, 201, 183, 169, 161, 128] }],
+    xaxis: { ...chartDefaults.xaxis, categories: ['Playacar', 'El Marlyn Azul', 'Zona Diamante', 'Playa Centro', 'Zazil Ha', 'L. D. Colosio', '28 Junio', 'Mis. Flores', 'Ejidal', 'Los Olivos'] },
+    plotOptions: { bar: { horizontal: true, borderRadius: 6, barHeight: '65%', distributed: true } },
+    colors: [violet, blue, blue, teal, teal, teal, teal, gold, teal, teal],
+    dataLabels: { enabled: true, style: { fontSize: '11px', fontWeight: 700 }, formatter: v => '$' + v + 'K', offsetX: 4 },
+    legend: { show: false },
+    tooltip: { y: { formatter: v => '$' + v + 'K MXN' } }
+  }).render();
+
+  // ── 3. Direct Comps Radar ──
+  new ApexCharts(document.querySelector('#chart-comps-radar'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'radar', height: 420 },
+    series: [
+      { name: 'Tu ficha', data: [78.2, 100, 73, 90, 85, 85, 90, 55, 54] },
+      { name: 'Colibri Coto11 (líder)', data: [84.5, 64.5, 91.2, 95, 89.3, 100, 90, 80, 67.8] },
+      { name: 'CasaOaxaca (2do)', data: [83.7, 58.3, 92.2, 95.5, 96.4, 100, 90, 70, 72.7] },
+    ],
+    xaxis: { categories: ['Ingresos', 'Precio', 'Ocupación', 'Atractivo', 'Amenidades', 'Confianza', 'Fricción', 'Ubicación', 'Valor'] },
+    colors: [gold, teal, rose],
+    stroke: { width: 2 },
+    fill: { opacity: 0.1 },
+    markers: { size: 3 },
+    yaxis: { show: false },
+    plotOptions: { radar: { polygons: { strokeColors: 'rgba(255,255,255,0.06)', connectorColors: 'rgba(255,255,255,0.06)', fill: { colors: ['rgba(255,255,255,0.01)', 'transparent'] } } } },
+  }).render();
+
+  // ── 4. Aspirational Bubble Chart ──
+  new ApexCharts(document.querySelector('#chart-aspirational-bubble'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'bubble', height: 380 },
+    series: [
+      {
+        name: 'Competidores',
+        data: [
+          [2269, 40, 84.5], [2102, 79, 83.7], [2206, 68, 83.2], [1684, 40, 80], [1891, 118, 79.9]
+        ]
+      },
+      {
+        name: 'Tu ficha',
+        data: [[2851, 4, 78.2]]
+      }
+    ],
+    colors: [teal, gold],
+    xaxis: { ...chartDefaults.xaxis, title: { text: 'Precio nocturno (MXN)', style: { color: '#5d6a7e', fontSize: '12px' } }, min: 1400, max: 3100 },
+    yaxis: { ...chartDefaults.yaxis, title: { text: 'Número de reseñas', style: { color: '#5d6a7e', fontSize: '12px' } }, min: 0, max: 130 },
+    plotOptions: { bubble: { minBubbleRadius: 8, maxBubbleRadius: 30 } },
+    dataLabels: { enabled: false },
+    fill: { opacity: 0.65 },
+    tooltip: { z: { title: 'Puntaje ingresos: ' } },
+  }).render();
+
+  // ── 5. Price vs Trust Scatter ──
+  const compNames = ['Depto bonito 5ta', 'Colibri Coto11', 'Xelva', 'CondoFamiliar', 'Depto Lujo', 'Vista alberca', 'Apto 3 hab', 'Apto acogedor', 'CasaOaxaca', 'Apto 10 min'];
+
+  new ApexCharts(document.querySelector('#chart-price-trust'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'scatter', height: 350 },
+    series: [
+      { name: 'Competidores', data: [[1455, 100], [2269, 100], [1736, 99.7], [2206, 100], [1891, 100], [1654, 100], [1684, 100], [1852, 100], [2102, 100], [1693, 95.8]] },
+      { name: 'Tu ficha', data: [[2851, 73]] }
+    ],
+    colors: [teal, gold],
+    markers: { size: [7, 12] },
+    xaxis: { ...chartDefaults.xaxis, title: { text: 'Precio nocturno (MXN)', style: { color: '#5d6a7e' } } },
+    yaxis: { ...chartDefaults.yaxis, title: { text: 'Puntaje de confianza', style: { color: '#5d6a7e' } }, min: 65, max: 105 },
+    annotations: {
+      points: [{ x: 2851, y: 73, marker: { size: 12, fillColor: gold, strokeColor: '#111', strokeWidth: 2 }, label: { text: 'Tu ficha', style: { background: gold, color: '#111', fontSize: '11px', fontWeight: 700, padding: { left: 6, right: 6, top: 3, bottom: 3 } }, offsetY: -14 } }]
+    },
+  }).render();
+
+  // ── 6. Price vs Value Scatter ──
+  new ApexCharts(document.querySelector('#chart-price-value'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'scatter', height: 350 },
+    series: [
+      { name: 'Competidores', data: [[1455, 82.5], [2269, 67.8], [1736, 74.4], [2206, 68.8], [1891, 69.8], [1654, 79.2], [1684, 78.7], [1852, 74.7], [2102, 72.7], [1693, 75.3]] },
+      { name: 'Tu ficha', data: [[2851, 54]] }
+    ],
+    colors: [teal, gold],
+    markers: { size: [7, 12] },
+    xaxis: { ...chartDefaults.xaxis, title: { text: 'Precio nocturno (MXN)', style: { color: '#5d6a7e' } } },
+    yaxis: { ...chartDefaults.yaxis, title: { text: 'Puntaje de valor por dinero', style: { color: '#5d6a7e' } }, min: 45, max: 90 },
+    annotations: {
+      points: [{ x: 2851, y: 54, marker: { size: 12, fillColor: gold, strokeColor: '#111', strokeWidth: 2 }, label: { text: 'Tu ficha', style: { background: gold, color: '#111', fontSize: '11px', fontWeight: 700, padding: { left: 6, right: 6, top: 3, bottom: 3 } }, offsetY: -14 } }]
+    },
+  }).render();
+
+  // ── 7. Price vs Occupancy Proxy ──
+  new ApexCharts(document.querySelector('#chart-price-occupancy'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'scatter', height: 350 },
+    series: [
+      { name: 'Competidores', data: [[1455, 92.9], [2269, 91.2], [1736, 90.8], [2206, 90.3], [1891, 89.8], [1654, 92.6], [1684, 92.4], [1852, 90.1], [2102, 92.2], [1693, 90.1]] },
+      { name: 'Tu ficha', data: [[2851, 76]] }
+    ],
+    colors: [teal, gold],
+    markers: { size: [7, 12] },
+    xaxis: { ...chartDefaults.xaxis, title: { text: 'Precio nocturno (MXN)', style: { color: '#5d6a7e' } } },
+    yaxis: { ...chartDefaults.yaxis, title: { text: 'Proxy de ocupación', style: { color: '#5d6a7e' } }, min: 72, max: 96 },
+    annotations: {
+      points: [{ x: 2851, y: 76, marker: { size: 12, fillColor: gold, strokeColor: '#111', strokeWidth: 2 }, label: { text: 'Tu ficha', style: { background: gold, color: '#111', fontSize: '11px', fontWeight: 700, padding: { left: 6, right: 6, top: 3, bottom: 3 } }, offsetY: -14 } }]
+    },
+  }).render();
+
+  // ── 8. Revenue Strength Ranking ──
+  new ApexCharts(document.querySelector('#chart-revenue-ranking'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'bar', height: 380 },
+    series: [{ name: 'Puntaje proxy de ingresos', data: [84.5, 83.7, 83.2, 80.0, 79.9, 79.8, 79.8, 79.3, 78.4, 78.2, 78.2] }],
+    xaxis: { ...chartDefaults.xaxis, categories: ['Colibri Coto11', 'CasaOaxaca', 'CondoFamiliar', 'Apto 3 hab', 'Depto Lujo', 'Vista alberca', 'Apto acogedor', 'Xelva', 'Apto 10 min', '⭐ Tu ficha', 'Depto bonito'] },
+    plotOptions: { bar: { horizontal: true, borderRadius: 6, barHeight: '65%', distributed: true } },
+    colors: [teal, teal, teal, teal, teal, teal, teal, teal, teal, gold, teal],
+    dataLabels: { enabled: true, style: { fontSize: '12px', fontWeight: 700 }, offsetX: 4 },
+    legend: { show: false },
+  }).render();
+
+  // ── 9. Amenity Radar ──
+  new ApexCharts(document.querySelector('#chart-amenity-radar'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'radar', height: 380 },
+    series: [
+      { name: 'Tu ficha', data: [85, 70, 90, 85, 60, 90] },
+      { name: 'Top 3 promedio', data: [92, 90, 95, 95, 95, 93] },
+    ],
+    xaxis: { categories: ['Amenidades físicas', 'Comunicación / Fotos', 'Layout / Espacio', 'Confort familiar', 'Prueba social', 'Conveniencia'] },
+    colors: [gold, teal],
+    stroke: { width: 2 },
+    fill: { opacity: 0.1 },
+    markers: { size: 3 },
+    yaxis: { show: false },
+    plotOptions: { radar: { polygons: { strokeColors: 'rgba(255,255,255,0.06)', connectorColors: 'rgba(255,255,255,0.06)', fill: { colors: ['rgba(255,255,255,0.01)', 'transparent'] } } } },
+  }).render();
+
+  // ── 10. Review Praise Chart ──
+  new ApexCharts(document.querySelector('#chart-review-praise'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'bar', height: 350 },
+    series: [{ name: 'Menciones', data: [4, 3, 3, 2, 2, 2, 2, 2, 2] }],
+    xaxis: { ...chartDefaults.xaxis, categories: ['Hospitalidad', 'Comodidad', 'Ubicación', 'Amenidades', 'Cal. sueño', 'Cerca', 'Familiar', 'Limpieza', 'Precisión'] },
+    plotOptions: { bar: { borderRadius: 8, columnWidth: '55%', distributed: true } },
+    colors: [teal, teal, teal, blue, blue, blue, blue, blue, blue],
+    dataLabels: { enabled: true, style: { fontSize: '13px', fontWeight: 700 } },
+    legend: { show: false },
+  }).render();
+
+  // ── 11. Photo Sequence (Funnel) ──
+  new ApexCharts(document.querySelector('#chart-photo-sequence'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'bar', height: 320 },
+    series: [{ name: 'Impacto en conversión', data: [95, 88, 82, 75, 70, 65, 58, 50] }],
+    xaxis: { ...chartDefaults.xaxis, categories: ['1. Sala+terraza', '2. Alberca lifestyle', '3. Recámara principal', '4. 2da/3ra recámara', '5. Cocina+comedor', '6. Estacionamiento', '7. Workspace/Wi-Fi', '8. Contexto local'] },
+    plotOptions: { bar: { horizontal: true, borderRadius: 6, barHeight: '60%', distributed: true } },
+    colors: [gold, gold, teal, teal, blue, blue, violet, violet],
+    dataLabels: { enabled: true, style: { fontSize: '11px', fontWeight: 700 }, formatter: v => v + '%' },
+    legend: { show: false },
+  }).render();
+
+  // ── 12. Action Plan Timeline (Grouped Bar) ──
+  new ApexCharts(document.querySelector('#chart-action-timeline'), {
+    ...chartDefaults,
+    chart: { ...chartDefaults.chart, type: 'bar', height: 300, stacked: true },
+    series: [
+      { name: '0-7 días', data: [90, 85, 80, 60] },
+      { name: '8-30 días', data: [75, 65, 55, 0] },
+      { name: '31-90 días', data: [60, 70, 50, 0] },
+    ],
+    xaxis: { ...chartDefaults.xaxis, categories: ['Conversión', 'Reseñas', 'Ocupación', 'CTR'] },
+    plotOptions: { bar: { borderRadius: 4, columnWidth: '50%' } },
+    colors: [rose, gold, blue],
+    dataLabels: { enabled: false },
+    legend: { position: 'top' },
+  }).render();
+
+  // ── Scroll Reveal ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+});
+</script>
+
+</body>
+</html>

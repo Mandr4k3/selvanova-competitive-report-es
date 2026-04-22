@@ -1,0 +1,423 @@
+{
+  "source": "AirDNA submarket pages observed in authenticated browser session",
+  "submarket_url": "https://app.airdna.co/data/mx/24/146170/overview?lat=20.658186&lng=-87.087405&zoom=14.66",
+  "submarket_name": "Mision de las Flores",
+  "market_name": "Playa del Carmen",
+  "screenshots": {
+    "overview": "output/artifacts/airdna_submarket_overview.png",
+    "occupancy": "output/artifacts/airdna_submarket_occupancy.png"
+  },
+  "overview_metrics": {
+    "submarket_score": 59,
+    "rental_demand_score": 48,
+    "revenue_growth_score": 50,
+    "seasonality_score": 90,
+    "regulation_score": 81,
+    "annual_revenue_mxn": 194000,
+    "annual_revenue_yoy_pct": -8.4,
+    "active_listings": 414,
+    "active_listings_yoy_pct": -0.7,
+    "adr_mxn": 1020,
+    "adr_yoy_pct": -4.1,
+    "occupancy_pct": 54,
+    "occupancy_yoy_pct": -5.3
+  },
+  "occupancy_metrics": {
+    "occupancy_pct": 54,
+    "occupancy_yoy_pct": -5.3,
+    "booking_lead_time_days": 45,
+    "booking_lead_time_yoy_pct": 4.4,
+    "length_of_stay_days": 7,
+    "length_of_stay_yoy_pct": -2.3,
+    "occupancy_over_time_yoy_pct": -13.0,
+    "booking_demand_yoy_pct": -9.8,
+    "length_of_stay_trend_yoy_pct": 12.7
+  },
+  "revenue_metrics": {
+    "average_revenue_mxn": 194000,
+    "average_revenue_yoy_pct": -8.4,
+    "entire_place_revenue_mxn": 204000,
+    "entire_place_revenue_yoy_pct": -7.5,
+    "house_revenue_mxn": 193600,
+    "house_revenue_yoy_pct": -10.9,
+    "apartment_revenue_mxn": 194800,
+    "apartment_revenue_yoy_pct": -7.8,
+    "listing_revenue_by_month_yoy_pct": -11.7,
+    "revenue_by_bedroom_yoy_pct": -1.6,
+    "revenue_by_real_estate_type_yoy_pct": -5.7
+  },
+  "rate_metrics": {
+    "average_daily_rate_mxn": 1000,
+    "average_daily_rate_yoy_pct": -4.1,
+    "entire_place_rate_mxn": 1100,
+    "entire_place_rate_yoy_pct": -3.0,
+    "professionally_managed_rate_mxn": 1500,
+    "professionally_managed_rate_yoy_pct": -5.8,
+    "luxury_rate_mxn": 3100,
+    "luxury_rate_yoy_pct": -10.9,
+    "average_daily_rate_trend_yoy_pct": 9.2
+  },
+  "top_submarkets": [
+    {
+      "name": "Playacar",
+      "score": 69,
+      "revenue_mxn": 676000,
+      "occupancy_pct": 54,
+      "revpar_usd": 107,
+      "adr_usd": 275
+    },
+    {
+      "name": "El Marlyn Azul",
+      "score": 51,
+      "revenue_mxn": 437000,
+      "occupancy_pct": 54,
+      "revpar_usd": 69,
+      "adr_usd": 167
+    },
+    {
+      "name": "Zona Diamante",
+      "score": 63,
+      "revenue_mxn": 380000,
+      "occupancy_pct": 51,
+      "revpar_usd": 60,
+      "adr_usd": 150
+    },
+    {
+      "name": "Playa Carmen Centro",
+      "score": 56,
+      "revenue_mxn": 277000,
+      "occupancy_pct": 60,
+      "revpar_usd": 44,
+      "adr_usd": 92
+    },
+    {
+      "name": "Zazil Ha",
+      "score": 60,
+      "revenue_mxn": 274000,
+      "occupancy_pct": 62,
+      "revpar_usd": 44,
+      "adr_usd": 91
+    },
+    {
+      "name": "Luis Donaldo Colosio",
+      "score": 59,
+      "revenue_mxn": 201000,
+      "occupancy_pct": 59,
+      "revpar_usd": 32,
+      "adr_usd": 72
+    },
+    {
+      "name": "28 Junio",
+      "score": 66,
+      "revenue_mxn": 183000,
+      "occupancy_pct": 57,
+      "revpar_usd": 29,
+      "adr_usd": 60
+    },
+    {
+      "name": "Mision de las Flores",
+      "score": 59,
+      "revenue_mxn": 169000,
+      "occupancy_pct": 54,
+      "revpar_usd": 27,
+      "adr_usd": 59
+    },
+    {
+      "name": "Ejidal",
+      "score": 57,
+      "revenue_mxn": 161000,
+      "occupancy_pct": 56,
+      "revpar_usd": 26,
+      "adr_usd": 57
+    },
+    {
+      "name": "Los Olivos",
+      "score": 52,
+      "revenue_mxn": 128000,
+      "occupancy_pct": 41,
+      "revpar_usd": 20,
+      "adr_usd": 57
+    }
+  ],
+  "top_listings": [
+    {
+      "title": "Madeiras Apt. Relax New, Selvanova coto 11, wifi",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 8,
+      "rating": 5.0,
+      "annual_revenue_mxn": 483000,
+      "days_available": 352,
+      "occupancy_pct": 74,
+      "adr_mxn": 2000
+    },
+    {
+      "title": "Charming family apartment/3BR/6pax/gym/pool/luxury",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 6,
+      "rating": 5.0,
+      "annual_revenue_mxn": 440000,
+      "days_available": 339,
+      "occupancy_pct": 70,
+      "adr_mxn": 2000
+    },
+    {
+      "title": "Elegant House 3 Bedrooms/3.5 Bathrooms@Selvanova",
+      "bedrooms": 3,
+      "bathrooms": 3.5,
+      "accommodates": 12,
+      "rating": 4.9,
+      "annual_revenue_mxn": 425000,
+      "days_available": 361,
+      "occupancy_pct": 72,
+      "adr_mxn": 2000
+    },
+    {
+      "title": "Casa Tortuga | 10min to Caribe~WIFI 200MB~Gym~King",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 8,
+      "rating": 5.0,
+      "annual_revenue_mxn": 415000,
+      "days_available": 353,
+      "occupancy_pct": 69,
+      "adr_mxn": 2000
+    },
+    {
+      "title": "Stylish House w/Car. 7min from beach",
+      "bedrooms": 3,
+      "bathrooms": 2.5,
+      "accommodates": 10,
+      "rating": 4.8,
+      "annual_revenue_mxn": 408000,
+      "days_available": 363,
+      "occupancy_pct": 81,
+      "adr_mxn": 1000
+    },
+    {
+      "title": "NEW Condo Jaguar |12min to Caribe,Pools,Playground",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 8,
+      "rating": 5.0,
+      "annual_revenue_mxn": 402000,
+      "days_available": 359,
+      "occupancy_pct": 70,
+      "adr_mxn": 2000
+    },
+    {
+      "title": "NEW and Beautiful apartment 8 minutes from 5th Ave.",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 8,
+      "rating": 5.0,
+      "annual_revenue_mxn": 381000,
+      "days_available": 356,
+      "occupancy_pct": 77,
+      "adr_mxn": 1000
+    },
+    {
+      "title": "Modern New Home Playa del Carmen · Selvanova 10",
+      "bedrooms": 3,
+      "bathrooms": 3.5,
+      "accommodates": 6,
+      "rating": 4.8,
+      "annual_revenue_mxn": 372000,
+      "days_available": 257,
+      "occupancy_pct": 64,
+      "adr_mxn": 2000
+    },
+    {
+      "title": "Luxury House w/Car. 7 min from beach",
+      "bedrooms": 3,
+      "bathrooms": 2.5,
+      "accommodates": 10,
+      "rating": 4.9,
+      "annual_revenue_mxn": 364000,
+      "days_available": 318,
+      "occupancy_pct": 80,
+      "adr_mxn": 1000
+    },
+    {
+      "title": "Cozy Home in Selvanova Coto 3 · Total Comfort",
+      "bedrooms": 3,
+      "bathrooms": 3.5,
+      "accommodates": 8,
+      "rating": 4.7,
+      "annual_revenue_mxn": 362000,
+      "days_available": 344,
+      "occupancy_pct": 58,
+      "adr_mxn": 2000
+    },
+    {
+      "title": "NEW Colibri Coto11 |12min toBeach,Gated,Playground",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 6,
+      "rating": 4.9,
+      "annual_revenue_mxn": 357000,
+      "days_available": 358,
+      "occupancy_pct": 70,
+      "adr_mxn": 1000
+    },
+    {
+      "title": "Spectacular house 10 minutes from 5th + pool",
+      "bedrooms": 3,
+      "bathrooms": 3.5,
+      "accommodates": 7,
+      "rating": 4.9,
+      "annual_revenue_mxn": 349000,
+      "days_available": 297,
+      "occupancy_pct": 83,
+      "adr_mxn": 1000
+    },
+    {
+      "title": "Selvanova Amazing Cond, 3 bedrooms, 5 beds, 2 bathrooms, Wi-Fi",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 7,
+      "rating": 4.9,
+      "annual_revenue_mxn": 346000,
+      "days_available": 359,
+      "occupancy_pct": 74,
+      "adr_mxn": 1000
+    },
+    {
+      "title": "Residence for 6 with a pool in Playa del Carmen",
+      "bedrooms": 3,
+      "bathrooms": 3.5,
+      "accommodates": 6,
+      "rating": 5.0,
+      "annual_revenue_mxn": 344000,
+      "days_available": 362,
+      "occupancy_pct": 47,
+      "adr_mxn": 2000
+    },
+    {
+      "title": "Casa LaMar | 10 min Beach | WIFI 300 MB | 2 Gyms | 6 Pools",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 8,
+      "rating": 5.0,
+      "annual_revenue_mxn": 329000,
+      "days_available": 328,
+      "occupancy_pct": 74,
+      "adr_mxn": 1000
+    },
+    {
+      "title": "NEW! Turquesa Coto11| Gated,Gyms,Pools,12min Beach",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 6,
+      "rating": 5.0,
+      "annual_revenue_mxn": 320000,
+      "days_available": 356,
+      "occupancy_pct": 58,
+      "adr_mxn": 2000
+    },
+    {
+      "title": "SelvaCoto8 |10min to the Caribbean, 300MB WIFI, Gym, Pool",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 6,
+      "rating": 5.0,
+      "annual_revenue_mxn": 317000,
+      "days_available": 352,
+      "occupancy_pct": 63,
+      "adr_mxn": 1000
+    },
+    {
+      "title": "NEW Selva Condo|12min to Beach,Gym,Pool,PlayGround",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 6,
+      "rating": 4.9,
+      "annual_revenue_mxn": 316000,
+      "days_available": 356,
+      "occupancy_pct": 65,
+      "adr_mxn": 1000
+    }
+  ],
+  "ai_guest_insights": {
+    "overview": "Mision de las Flores is characterized by its family-friendly atmosphere and spacious, safe residential areas. Guests often describe the neighborhood as tranquil and secure, providing a respite from the bustling tourist areas of Playa del Carmen. The proximity to supermarkets, restaurants, and local food vendors adds to the convenience, allowing visitors to feel at home while enjoying the amenities of the area. The overall vibe is relaxed, making it ideal for families and those looking for a quieter vacation experience.",
+    "what_guests_love": [
+      "Tranquil and safe residential area",
+      "Proximity to supermarkets and local eateries",
+      "Family-friendly environment",
+      "Well-maintained amenities and common areas",
+      "Easy access to nearby attractions and tourist sites"
+    ],
+    "amenities": [
+      "Swimming pools",
+      "Gated communities with security",
+      "Playgrounds for children",
+      "BBQ areas",
+      "Fitness facilities"
+    ],
+    "guest_groups": [
+      "Families traveling with children",
+      "Groups on vacation",
+      "Digital nomads looking for a quiet stay",
+      "Couples seeking a romantic getaway",
+      "Travelers who prefer privacy and security"
+    ],
+    "complaints": [
+      "Distance from the beach and tourist areas",
+      "Inconsistent water pressure in some listings",
+      "Occasional power outages during peak times",
+      "Need for better maintenance in some properties",
+      "Limited public transport options"
+    ]
+  },
+  "performance_spotlight": [
+    {
+      "title": "Amazing apartment, excellent host",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 7,
+      "rating_text": "5.0 (1)",
+      "revenue_potential_mxn": 724900,
+      "days_available": 114,
+      "annual_revenue_mxn": 265700,
+      "occupancy_pct": 97,
+      "daily_rate_mxn": 2400
+    },
+    {
+      "title": "Madeiras Apt. Relax New, Selvanova coto 11, wifi",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 8,
+      "rating_text": "5.0 (61)",
+      "revenue_potential_mxn": 501000,
+      "days_available": 352,
+      "annual_revenue_mxn": 482700,
+      "occupancy_pct": 74,
+      "daily_rate_mxn": 1900
+    },
+    {
+      "title": "Charming family apartment/3BR/6pax/gym/pool/luxury",
+      "bedrooms": 3,
+      "bathrooms": 2,
+      "accommodates": 6,
+      "rating_text": "5.0 (6)",
+      "revenue_potential_mxn": 496200,
+      "days_available": 339,
+      "annual_revenue_mxn": 440100,
+      "occupancy_pct": 70,
+      "daily_rate_mxn": 1900
+    },
+    {
+      "title": "Modern New Home Playa del Carmen · Selvanova 10",
+      "bedrooms": 3,
+      "bathrooms": 3.5,
+      "accommodates": 6,
+      "rating_text": "4.8 (43)",
+      "revenue_potential_mxn": 487000,
+      "days_available": 257,
+      "annual_revenue_mxn": 372000,
+      "occupancy_pct": 64,
+      "daily_rate_mxn": 2400
+    }
+  ]
+}
