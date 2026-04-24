@@ -1,0 +1,1411 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selvanova Competitive Report</title>
+  <style>
+    :root {
+      --paper: #f7f2e8;
+      --paper-2: #fbf8f2;
+      --panel: rgba(255, 250, 243, 0.92);
+      --panel-strong: #fff9f1;
+      --ink: #1d252d;
+      --muted: #5d6773;
+      --gold: #b97c12;
+      --gold-soft: rgba(185, 124, 18, 0.14);
+      --teal: #145f5a;
+      --teal-soft: rgba(20, 95, 90, 0.12);
+      --sand: #eadcc7;
+      --line: rgba(88, 73, 49, 0.14);
+      --rose: #b64a53;
+      --rose-soft: rgba(182, 74, 83, 0.12);
+      --navy: #213145;
+      --shadow: 0 24px 60px rgba(46, 34, 18, 0.10);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(185, 124, 18, 0.16), transparent 22%),
+        radial-gradient(circle at top left, rgba(20, 95, 90, 0.10), transparent 26%),
+        linear-gradient(180deg, #fdfbf7 0%, var(--paper) 24%, #efe5d3 100%);
+      color: var(--ink);
+      line-height: 1.55;
+    }
+    a { color: inherit; }
+    .wrap {
+      width: min(1660px, calc(100vw - 28px));
+      margin: 0 auto;
+      padding: 20px 0 56px;
+    }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(340px, 380px) minmax(0, 1fr);
+      gap: 22px;
+      align-items: start;
+    }
+    .sidebar {
+      position: sticky;
+      top: 18px;
+      align-self: start;
+      display: grid;
+      gap: 14px;
+    }
+    .nav-card,
+    .hero,
+    .section,
+    .metric-card,
+    .card,
+    .chart-card,
+    .evidence-card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+      border-radius: 24px;
+    }
+    .nav-card {
+      padding: 22px;
+    }
+    .brand {
+      display: grid;
+      gap: 8px;
+    }
+    .brand .eyebrow,
+    .section .eyebrow {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--gold);
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(30px, 2.8vw, 44px);
+      line-height: 0.93;
+      letter-spacing: -0.05em;
+      color: var(--navy);
+      text-wrap: balance;
+      overflow-wrap: anywhere;
+      max-width: 10ch;
+    }
+    .brand p,
+    .muted {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+    }
+    .toc {
+      display: grid;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .toc a {
+      text-decoration: none;
+      padding: 10px 12px;
+      border-radius: 14px;
+      color: var(--navy);
+      font-size: 13px;
+      font-weight: 650;
+      transition: transform 120ms ease, background 120ms ease;
+      background: transparent;
+      border: 1px solid transparent;
+    }
+    .toc a:hover {
+      transform: translateX(2px);
+      background: rgba(255,255,255,0.55);
+      border-color: var(--line);
+    }
+    .toc span {
+      color: var(--gold);
+      margin-right: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    .badge-row,
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .hero {
+      padding: 34px;
+      background:
+        linear-gradient(135deg, rgba(16, 44, 55, 0.97), rgba(185, 124, 18, 0.93)),
+        linear-gradient(120deg, rgba(255,255,255,0.12), transparent 40%);
+      color: #fff;
+      margin-bottom: 18px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.12fr) minmax(340px, 0.88fr);
+      gap: 24px;
+      align-items: end;
+    }
+    .hero-copy {
+      display: grid;
+      gap: 12px;
+    }
+    .hero h2 {
+      margin: 10px 0 8px;
+      font-size: clamp(42px, 4.6vw, 82px);
+      line-height: 0.87;
+      letter-spacing: -0.06em;
+      color: white;
+      text-wrap: balance;
+      max-width: 12ch;
+    }
+    .hero p {
+      margin: 0;
+      color: rgba(255,255,255,0.87);
+      font-size: 17px;
+      max-width: 58ch;
+    }
+    .hero-meta {
+      display: grid;
+      gap: 10px;
+    }
+    .hero-panel {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 22px;
+      padding: 18px;
+    }
+    .hero-panel h3 {
+      margin: 0 0 10px;
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.78);
+    }
+    .hero-panel .big {
+      font-size: 30px;
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .summary-grid,
+    .grid-4,
+    .grid-3,
+    .grid-2,
+    .chart-grid,
+    .card-grid {
+      display: grid;
+      gap: 16px;
+    }
+    .summary-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+    .metric-card,
+    .card,
+    .chart-card,
+    .evidence-card {
+      padding: 18px;
+    }
+    .section {
+      padding: 24px;
+      margin-bottom: 18px;
+    }
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+    .section h2 {
+      margin: 4px 0 0;
+      font-size: 30px;
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      color: var(--navy);
+      text-wrap: balance;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+    }
+    p { margin: 10px 0; color: var(--muted); }
+    .metric {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--navy);
+      line-height: 1.05;
+      margin-bottom: 8px;
+    }
+    .metric-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .subtle {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 7px 11px;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(255,255,255,0.78);
+      color: var(--navy);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .pill-good { background: var(--teal-soft); color: var(--teal); border-color: rgba(20,95,90,0.12); }
+    .pill-warn { background: var(--gold-soft); color: var(--gold); border-color: rgba(185,124,18,0.12); }
+    .pill-risk { background: var(--rose-soft); color: var(--rose); border-color: rgba(182,74,83,0.12); }
+    .pill-neutral { background: rgba(33,49,69,0.06); color: var(--navy); border-color: rgba(33,49,69,0.08); }
+    .callout {
+      border-left: 4px solid var(--gold);
+      padding: 16px 18px;
+      background: linear-gradient(180deg, rgba(185,124,18,0.08), rgba(185,124,18,0.04));
+      border-radius: 16px;
+      margin-top: 12px;
+      color: #4d3d24;
+    }
+    .risk {
+      border-left-color: var(--rose);
+      background: linear-gradient(180deg, rgba(182,74,83,0.10), rgba(182,74,83,0.04));
+      color: #6d2731;
+    }
+    .good {
+      border-left-color: var(--teal);
+      background: linear-gradient(180deg, rgba(20,95,90,0.10), rgba(20,95,90,0.04));
+      color: #0b5751;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.55);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      min-width: 860px;
+    }
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--gold);
+      background: rgba(255,255,255,0.75);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+    .chart-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 20px;
+    }
+    ul.flat {
+      margin: 10px 0 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    ul.flat li { margin: 7px 0; }
+    .action-table td, .action-table th { font-size: 12px; }
+    .sources a {
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(11,122,117,0.25);
+    }
+    .small {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .split {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 10px;
+    }
+    .split > div {
+      flex: 1 1 220px;
+      background: rgba(255,255,255,0.54);
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid var(--line);
+    }
+    .evidence-strip {
+      display: grid;
+      gap: 10px;
+    }
+    .evidence-card a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .anchor {
+      scroll-margin-top: 22px;
+    }
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 12px;
+    }
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--line), transparent);
+      margin: 18px 0;
+    }
+    .caption {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    @media (max-width: 1200px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+      }
+      .brand h1 {
+        max-width: none;
+      }
+      .toc {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    @media (max-width: 960px) {
+      .hero-grid,
+      .summary-grid,
+      .grid-4,
+      .grid-3,
+      .grid-2,
+      .chart-grid {
+        grid-template-columns: 1fr;
+      }
+      .wrap {
+        width: min(100vw - 18px, 1520px);
+      }
+      .hero,
+      .section,
+      .nav-card {
+        border-radius: 20px;
+        padding: 18px;
+      }
+      .toc {
+        grid-template-columns: 1fr;
+      }
+      .hero h2 {
+        max-width: none;
+      }
+      .hero p {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="layout">
+      <aside class="sidebar">
+        <div class="nav-card">
+          <div class="brand">
+            <div class="eyebrow">Selvanova Strategy File</div>
+            <h1>Revenue-grade competitive report</h1>
+            <p>Micro-market reverse-engineering for <strong>Gran casa de lujo Sahuaro Selvanova</strong>.</p>
+          </div>
+          <div class="section-divider"></div>
+          <div class="pill-row">
+            <span class="pill pill-good">Airbnb live extraction</span>
+            
+            <span class="pill pill-good">AirDNA submarket evidence</span>
+            
+            <span class="pill pill-neutral">Generated 2026-04-22 16:05:21 EST</span>
+          </div>
+          <div class="section-divider"></div>
+          <nav class="toc">
+            <a href="#exec-summary"><span>01</span>Executive summary</a>
+            <a href="#property-snapshot"><span>02</span>Property snapshot</a>
+            <a href="#selvanova-market"><span>03</span>Selvanova market overview</a>
+            <a href="#direct-comps"><span>04</span>Direct competitors</a>
+            <a href="#aspirational-comps"><span>05</span>Aspirational competitors</a>
+            <a href="#pricing-visuals"><span>06</span>Revenue & pricing visuals</a>
+            <a href="#frontier"><span>07</span>Occupancy / ADR frontier</a>
+            <a href="#amenity-gaps"><span>08</span>Amenity gap analysis</a>
+            <a href="#review-intel"><span>09</span>Review intelligence</a>
+            <a href="#photo-copy"><span>10</span>Photo & copy audit</a>
+            <a href="#friction"><span>11</span>Booking friction</a>
+            <a href="#segments"><span>12</span>Guest segments</a>
+            <a href="#titles-copy"><span>13</span>Titles & rewritten copy</a>
+            <a href="#photo-order"><span>14</span>Photo order & shot list</a>
+            <a href="#pricing"><span>15</span>Pricing recommendations</a>
+            <a href="#action-plan"><span>16</span>30/60/90 plan</a>
+            <a href="#quick-wins"><span>17</span>Quick wins</a>
+            <a href="#appendix"><span>18</span>Appendix</a>
+          </nav>
+        </div>
+
+        <div class="evidence-card">
+          <div class="eyebrow">Evidence quality</div>
+          <h3>What this report can defend</h3>
+          <ul class="flat">
+            <li>Observed Airbnb listing attributes and search-price proxies</li>
+            <li>Observed AirDNA submarket metrics for Mision de las Flores</li>
+            <li>Explicitly labeled proxy scores where first-party revenue data is missing</li>
+          </ul>
+        </div>
+
+        <div class="evidence-card">
+          <div class="eyebrow">Artifact links</div>
+          <div class="evidence-strip sources">
+            
+            <a href="artifacts/my_listing_airbnb_full.png">Primary listing screenshot</a>
+            
+            <a href="artifacts/airbnb_search_selvanova.png">Selvanova Airbnb search screenshot</a>
+            
+            <a href="artifacts/airdna_submarket_overview.png">AirDNA submarket overview screenshot</a>
+            
+            <a href="artifacts/airdna_submarket_occupancy.png">AirDNA occupancy screenshot</a>
+            
+            <a href="artifacts/airdna_submarket_snapshot.json">AirDNA submarket snapshot JSON</a>
+            
+            <a href="artifacts/my_listing_snapshot.md">Primary Airbnb page snapshot</a>
+            
+            <a href="artifacts/search_html/selvanova_q1.html">Search HTML: selvanova_q1.html</a>
+            
+            <a href="artifacts/search_html/selvanova_q6.html">Search HTML: selvanova_q6.html</a>
+            
+          </div>
+        </div>
+      </aside>
+
+      <main>
+        <section class="hero anchor" id="exec-summary">
+          <div class="badge-row">
+            <span class="pill pill-warn">Primary listing: Gran casa de lujo Sahuaro Selvanova</span>
+            
+            <span class="pill pill-good">AirDNA submarket: 59 score</span>
+            
+          </div>
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="eyebrow" style="color:rgba(255,255,255,0.72);">Executive readout</div>
+              <h2>Top Selvanova winners are beating the market with trust, clarity, and practical family-group fit.</h2>
+              <p>Your product is strong enough to compete. The monetisation gap is mostly page execution: your observed ask is premium, but your social proof is still thin and some benefits are under-sold while one visible amenity may be inaccurate.</p>
+            </div>
+            <div class="hero-meta">
+              <div class="hero-panel">
+                <h3>Primary tension</h3>
+                <div class="big">$2,851 MXN</div>
+                <div class="small">Observed nightly search-price proxy with only 4 reviews.</div>
+              </div>
+              <div class="hero-panel">
+                <h3>What top winners show</h3>
+                <div class="big">$434K</div>
+                <div class="small">Average annual revenue across the top AirDNA 5 in this micro-market, with about 73% occupancy.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="summary-grid">
+          
+          <div class="metric-card">
+            <div class="metric-label">Price Position</div>
+            <div class="metric">58.9% vs direct median</div>
+            <div class="subtle">Observed nightly search-rate proxy vs direct Selvanova-like comps.</div>
+          </div>
+          
+          <div class="metric-card">
+            <div class="metric-label">Review Depth</div>
+            <div class="metric">4 reviews</div>
+            <div class="subtle">Perfect 5.0 rating, but still early-stage social proof.</div>
+          </div>
+          
+          <div class="metric-card">
+            <div class="metric-label">Trust Gap</div>
+            <div class="metric">56 reviews below direct median</div>
+            <div class="subtle">Main monetisation blocker relative to established nearby winners.</div>
+          </div>
+          
+          <div class="metric-card">
+            <div class="metric-label">Core Strength</div>
+            <div class="metric">3BR + pools + parking</div>
+            <div class="subtle">The product fit is strong; the page has to communicate it faster and more credibly.</div>
+          </div>
+          
+          <div class="metric-card">
+            <div class="metric-label">Submarket Baseline</div>
+            <div class="metric">54% occ. / $1.0K ADR</div>
+            <div class="subtle">Observed AirDNA overview for Mision de las Flores.</div>
+          </div>
+          
+        </section>
+
+        <section class="section anchor" id="property-snapshot">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">2. Property snapshot</div>
+              <h2>What the listing is selling today</h2>
+            </div>
+            <div class="small mono">https://www.airbnb.mx/rooms/1614163423009452086?check_in=2026-04-25&check_out=2026-04-27&adults=1&guests=1&enable_auto_translate=false</div>
+          </div>
+          <div class="grid-3">
+            <div class="card">
+              <h3>Observed core facts</h3>
+              <ul class="flat">
+                <li>6 guests, 3.0 bedrooms, 4.0 beds, 2.0 baths</li>
+                <li>5.0 rating from 4 reviews</li>
+                <li>Verified host profile; Índice de respuesta: 100%</li>
+                <li>Self check-in visible</li>
+                <li>Observed location framing: Playa del Carmen, Quintana Roo, México</li>
+              </ul>
+            </div>
+            <div class="card">
+              <h3>What already works</h3>
+              <div class="pill-row">
+                
+                  <span class="pill pill-good">3 bedrooms</span>
+                
+                  <span class="pill pill-good">4 pools</span>
+                
+                  <span class="pill pill-good">Private parking</span>
+                
+                  <span class="pill pill-good">Self check-in</span>
+                
+                  <span class="pill pill-good">Workspace</span>
+                
+                  <span class="pill pill-good">Gym access</span>
+                
+              </div>
+              <p>Disfruta de Playa del Carmen desde este precioso Apartamento de 110 m² con 3 amplios dormitorios, 2 baños, una terraza privada rodeada de naturaleza y una sala de 75" Cinema TV para tus días de descanso.
+4 piscinas, comedores exteriores, áreas verdes con senderos, 2 Gym, 2 área BBQ, kids Club, teenagers Club.
+Seguridad 24h.
+Parking privad...</p>
+            </div>
+            <div class="card">
+              <h3>Trust and friction snapshot</h3>
+              <ul class="flat">
+                <li>Observed nightly search-price proxy: $2,851 MXN</li>
+                <li>Review themes: Hospitalidad, Comodidad, Ubicación, Cerca, Precisión, Amenidades, Calidad del sueño, Familiar, Limpieza</li>
+                <li>Check-in/out rules: Llegada y salida: Llegada a partir de las 4:00 p.m.; Llegada y salida: Salida antes de las 11:00 a.m.; Llegada y salida: Llegada autónoma con candado inteligente; Llegada a partir de las 4:00 p.m.; Salida antes de las 11:00 a.m.</li>
+                <li>Cancellation visibility: Exact public cancellation text unavailable in extracted payload</li>
+                <li>Fee visibility: Search results showed fee-inclusive totals; exact fee line items were not consistently exposed.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section anchor" id="selvanova-market">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">3. Selvanova market overview</div>
+              <h2>AirDNA confirms this is a practical residential base, not a beach-strip market</h2>
+            </div>
+            <div class="small">Primary submarket: Mision de las Flores / Selvanova area</div>
+          </div>
+          
+          <div class="grid-4">
+            <div class="metric-card">
+              <div class="metric-label">Submarket score</div>
+              <div class="metric">59</div>
+              <div class="subtle">Rental demand 48, revenue growth 50, seasonality 90, regulation 81.</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Average revenue</div>
+              <div class="metric">$194K</div>
+              <div class="subtle">-8.4% past year</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Average ADR</div>
+              <div class="metric">$1.0K</div>
+              <div class="subtle">-4.1% past year</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-label">Average occupancy</div>
+              <div class="metric">54%</div>
+              <div class="subtle">-5.3% past year across 414 active listings</div>
+            </div>
+          </div>
+          <div class="split">
+            <div>
+              <h3>AirDNA guest insight summary</h3>
+              <p>Mision de las Flores is characterized by its family-friendly atmosphere and spacious, safe residential areas. Guests often describe the neighborhood as tranquil and secure, providing a respite from the bustling tourist areas of Playa del Carmen. The proximity to supermarkets, restaurants, and local food vendors adds to the convenience, allowing visitors to feel at home while enjoying the amenities of the area. The overall vibe is relaxed, making it ideal for families and those looking for a quieter vacation experience.</p>
+            </div>
+            <div>
+              <h3>Strategic read</h3>
+              <ul class="flat">
+                
+                <li>Mision de las Flores scores 59 overall, with very high seasonality (90) and strong regulation (81), so execution quality matters more than raw market tailwind.</li>
+                
+                <li>Average submarket revenue is $194K, but top nearby 3BR listings cluster around $434K when they pair stronger trust and clearer family-group fit.</li>
+                
+                <li>Observed lead time is 45 days and average stay is 7 days, which supports sharper pre-arrival trust cues and practical long-stay positioning.</li>
+                
+                <li>Public AirDNA guest themes reinforce the same pattern seen on Airbnb: security, pools, family comfort, quiet, and convenience win; distance from the beach remains the main objection to neutralize.</li>
+                
+              </ul>
+            </div>
+          </div>
+          <div class="grid-3" style="margin-top:14px;">
+            <div class="card">
+              <h3>What guests love</h3>
+              <ul class="flat">
+                
+                <li>Tranquil and safe residential area</li>
+                
+                <li>Proximity to supermarkets and local eateries</li>
+                
+                <li>Family-friendly environment</li>
+                
+                <li>Well-maintained amenities and common areas</li>
+                
+                <li>Easy access to nearby attractions and tourist sites</li>
+                
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Expected amenities</h3>
+              <ul class="flat">
+                
+                <li>Swimming pools</li>
+                
+                <li>Gated communities with security</li>
+                
+                <li>Playgrounds for children</li>
+                
+                <li>BBQ areas</li>
+                
+                <li>Fitness facilities</li>
+                
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Common objections</h3>
+              <ul class="flat">
+                
+                <li>Distance from the beach and tourist areas</li>
+                
+                <li>Inconsistent water pressure in some listings</li>
+                
+                <li>Occasional power outages during peak times</li>
+                
+                <li>Need for better maintenance in some properties</li>
+                
+                <li>Limited public transport options</li>
+                
+              </ul>
+            </div>
+          </div>
+          <div class="grid-2" style="margin-top:16px;">
+            <div class="card">
+              <h3>Top submarkets in Playa del Carmen</h3>
+              <div class="table-wrap"><table class='report-table'><thead><tr><th>Submarket</th><th>Score</th><th>Display Revenue</th><th>Occupancy</th><th>Display Revpar</th><th>Display Adr</th></tr></thead><tbody><tr><td>Playacar</td><td>69</td><td>$676K</td><td>54%</td><td>$107</td><td>$275</td></tr><tr><td>El Marlyn Azul</td><td>51</td><td>$437K</td><td>54%</td><td>$69</td><td>$167</td></tr><tr><td>Zona Diamante</td><td>63</td><td>$380K</td><td>51%</td><td>$60</td><td>$150</td></tr><tr><td>Playa Carmen Centro</td><td>56</td><td>$277K</td><td>60%</td><td>$44</td><td>$92</td></tr><tr><td>Zazil Ha</td><td>60</td><td>$274K</td><td>62%</td><td>$44</td><td>$91</td></tr><tr><td>Luis Donaldo Colosio</td><td>59</td><td>$201K</td><td>59%</td><td>$32</td><td>$72</td></tr><tr><td>28 Junio</td><td>66</td><td>$183K</td><td>57%</td><td>$29</td><td>$60</td></tr><tr><td>Mision de las Flores</td><td>59</td><td>$169K</td><td>54%</td><td>$27</td><td>$59</td></tr><tr><td>Ejidal</td><td>57</td><td>$161K</td><td>56%</td><td>$26</td><td>$57</td></tr><tr><td>Los Olivos</td><td>52</td><td>$128K</td><td>41%</td><td>$20</td><td>$57</td></tr></tbody></table></div>
+              <div class="caption">These are AirDNA interface values as displayed on the submarket overview page.</div>
+            </div>
+            <div class="card">
+              <h3>Top-performing Selvanova / Mision listings</h3>
+              <div class="table-wrap"><table class='report-table'><thead><tr><th>Title</th><th>Bedrooms</th><th>Accommodates</th><th>Rating</th><th>Airdna Revenue</th><th>Occupancy</th><th>Airdna Adr</th><th>Days Available</th></tr></thead><tbody><tr><td>Madeiras Apt. Relax New, Selvanova coto 11, wifi</td><td>3</td><td>8</td><td>5.0</td><td>$483K</td><td>74%</td><td>$2.0K</td><td>352</td></tr><tr><td>Charming family apartment/3BR/6pax/gym/pool/luxury</td><td>3</td><td>6</td><td>5.0</td><td>$440K</td><td>70%</td><td>$2.0K</td><td>339</td></tr><tr><td>Elegant House 3 Bedrooms/3.5 Bathrooms@Selvanova</td><td>3</td><td>12</td><td>4.9</td><td>$425K</td><td>72%</td><td>$2.0K</td><td>361</td></tr><tr><td>Casa Tortuga | 10min to Caribe~WIFI 200MB~Gym~King</td><td>3</td><td>8</td><td>5.0</td><td>$415K</td><td>69%</td><td>$2.0K</td><td>353</td></tr><tr><td>Stylish House w/Car. 7min from beach</td><td>3</td><td>10</td><td>4.8</td><td>$408K</td><td>81%</td><td>$1.0K</td><td>363</td></tr><tr><td>NEW Condo Jaguar |12min to Caribe,Pools,Playground</td><td>3</td><td>8</td><td>5.0</td><td>$402K</td><td>70%</td><td>$2.0K</td><td>359</td></tr><tr><td>NEW and Beautiful apartment 8 minutes from 5th Ave.</td><td>3</td><td>8</td><td>5.0</td><td>$381K</td><td>77%</td><td>$1.0K</td><td>356</td></tr><tr><td>Modern New Home Playa del Carmen · Selvanova 10</td><td>3</td><td>6</td><td>4.8</td><td>$372K</td><td>64%</td><td>$2.0K</td><td>257</td></tr><tr><td>Luxury House w/Car. 7 min from beach</td><td>3</td><td>10</td><td>4.9</td><td>$364K</td><td>80%</td><td>$1.0K</td><td>318</td></tr><tr><td>Cozy Home in Selvanova Coto 3 · Total Comfort</td><td>3</td><td>8</td><td>4.7</td><td>$362K</td><td>58%</td><td>$2.0K</td><td>344</td></tr></tbody></table></div>
+              <div class="caption">These top performers are the closest evidence for the revenue frontier you are trying to join.</div>
+            </div>
+          </div>
+          <p class="small sources">Observed AirDNA pages: <a href="artifacts/airdna_submarket_overview.png">overview screenshot</a>, <a href="artifacts/airdna_submarket_occupancy.png">occupancy screenshot</a>, and the browser-observed metric snapshot saved in <span class="mono">artifacts/airdna_submarket_snapshot.json</span>. Source URL: <a class="mono" href="https://app.airdna.co/data/mx/24/146170/overview?lat=20.658186&lng=-87.087405&zoom=14.66">https://app.airdna.co/data/mx/24/146170/overview?lat=20.658186&lng=-87.087405&zoom=14.66</a>.</p>
+          
+        </section>
+
+        <section class="section anchor" id="direct-comps">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">4. Direct competitor table</div>
+              <h2>Closest apartment / condo competition for the same booking mission</h2>
+            </div>
+          </div>
+          <p>These direct comps prioritize Selvanova-like proximity, 3-bedroom family-group fit, and apartment/condo-style inventory. When strict apartment-only supply was too thin, the set widened to nearby residential equivalents and is flagged in the appendix.</p>
+          <div class="table-wrap"><table class='report-table'><thead><tr><th>Title</th><th>Nightly Price Mxn</th><th>Rating</th><th>Review Count</th><th>Distance Km</th><th>Guests</th><th>Bedrooms</th><th>Beds</th><th>Revenue Strength Proxy Score</th><th>Pricing Strength Score</th><th>Occupancy Proxy Score</th><th>Listing Appeal Score</th><th>Amenity Completeness Score</th><th>Trust Review Strength Score</th><th>Booking Friction Score</th><th>Photo Storytelling Score</th><th>Family Group Fit Score</th><th>Location Framing Score</th><th>Value For Money Score</th></tr></thead><tbody><tr><td>NUEVO Colibri Coto11 |12min a la playa, cerrado, parque infantil</td><td>$2,269 MXN</td><td>4.9</td><td>40</td><td>0.6 km</td><td>6</td><td>3.0</td><td>4.0</td><td>84.5</td><td>64.5</td><td>91.2</td><td>95.0</td><td>89.3</td><td>100.0</td><td>90</td><td>100</td><td>100.0</td><td>80</td><td>67.8</td></tr><tr><td>CasaOaxaca|Paraíso familiar|A 10 min de la playa|Wifi de 300 MB</td><td>$2,102 MXN</td><td>4.9</td><td>79</td><td>0.5 km</td><td>6</td><td>3.0</td><td>5.0</td><td>83.7</td><td>58.3</td><td>92.2</td><td>95.5</td><td>96.4</td><td>100.0</td><td>90</td><td>100</td><td>100.0</td><td>70</td><td>72.7</td></tr><tr><td>CondoFamiliar|A 10min Playa|WIFI200MB|Gym|Albercas</td><td>$2,206 MXN</td><td>4.9</td><td>68</td><td>0.6 km</td><td>6</td><td>3.0</td><td>5.0</td><td>83.2</td><td>62.1</td><td>90.3</td><td>89.4</td><td>89.3</td><td>100.0</td><td>90</td><td>94</td><td>90.0</td><td>55</td><td>68.8</td></tr><tr><td>Apto 3 hab + 2 baños + alberca + gym + asador</td><td>$1,684 MXN</td><td>5.0</td><td>40</td><td>0.4 km</td><td>6</td><td>3.0</td><td>3.0</td><td>80.0</td><td>42.7</td><td>92.4</td><td>91.0</td><td>92.9</td><td>100.0</td><td>90</td><td>92</td><td>100.0</td><td>55</td><td>78.7</td></tr><tr><td>Departamento de Lujo en conjunto residencial</td><td>$1,891 MXN</td><td>4.9</td><td>118</td><td>0.5 km</td><td>6</td><td>3.0</td><td>5.0</td><td>79.9</td><td>50.4</td><td>89.8</td><td>86.0</td><td>75.0</td><td>100.0</td><td>90</td><td>94</td><td>90.0</td><td>55</td><td>69.8</td></tr><tr><td>Vista a la alberca + balcón + 3 hab + 2 baños</td><td>$1,654 MXN</td><td>4.9</td><td>64</td><td>0.3 km</td><td>6</td><td>3.0</td><td>3.0</td><td>79.8</td><td>41.6</td><td>92.6</td><td>91.5</td><td>92.9</td><td>100.0</td><td>90</td><td>99</td><td>100.0</td><td>45</td><td>79.2</td></tr><tr><td>Apto acogedor + lavadora + alberca + 3 hab</td><td>$1,852 MXN</td><td>4.9</td><td>108</td><td>0.3 km</td><td>6</td><td>3.0</td><td>3.0</td><td>79.8</td><td>49.0</td><td>90.1</td><td>83.4</td><td>89.3</td><td>100.0</td><td>90</td><td>64</td><td>100.0</td><td>55</td><td>74.7</td></tr><tr><td>Xelva</td><td>$1,736 MXN</td><td>4.8</td><td>25</td><td>0.7 km</td><td>6</td><td>3.0</td><td>4.0</td><td>79.3</td><td>44.7</td><td>90.8</td><td>87.6</td><td>82.1</td><td>99.7</td><td>90</td><td>94</td><td>90.0</td><td>55</td><td>74.4</td></tr><tr><td>Apartamento a 10 minutos de la playa</td><td>$1,693 MXN</td><td>4.8</td><td>18</td><td>0.6 km</td><td>6</td><td>3.0</td><td>4.0</td><td>78.4</td><td>43.1</td><td>90.1</td><td>91.8</td><td>85.7</td><td>95.8</td><td>90</td><td>100</td><td>100.0</td><td>70</td><td>75.3</td></tr><tr><td>Departamento bonito a solo 10 minutos* de la 5ta.</td><td>$1,455 MXN</td><td>4.8</td><td>55</td><td>0.6 km</td><td>6</td><td>3.0</td><td>4.0</td><td>78.2</td><td>34.2</td><td>92.9</td><td>90.3</td><td>92.9</td><td>100.0</td><td>90</td><td>84</td><td>100.0</td><td>65</td><td>82.5</td></tr></tbody></table></div>
+        </section>
+
+        <section class="section anchor" id="aspirational-comps">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">5. Aspirational competitor table</div>
+              <h2>Listings setting the bar for trust, clarity, and monetisation</h2>
+            </div>
+          </div>
+          <p>Aspirational comps stay grounded in the same guest mission. They are useful because they show what stronger execution looks like without drifting into unrealistic luxury-villa inventory.</p>
+          <div class="table-wrap"><table class='report-table'><thead><tr><th>Title</th><th>Nightly Price Mxn</th><th>Rating</th><th>Review Count</th><th>Distance Km</th><th>Guests</th><th>Bedrooms</th><th>Beds</th><th>Revenue Strength Proxy Score</th><th>Pricing Strength Score</th><th>Occupancy Proxy Score</th><th>Listing Appeal Score</th><th>Amenity Completeness Score</th><th>Trust Review Strength Score</th><th>Booking Friction Score</th><th>Photo Storytelling Score</th><th>Family Group Fit Score</th><th>Location Framing Score</th><th>Value For Money Score</th></tr></thead><tbody><tr><td>NUEVO Colibri Coto11 |12min a la playa, cerrado, parque infantil</td><td>$2,269 MXN</td><td>4.9</td><td>40</td><td>0.6 km</td><td>6</td><td>3.0</td><td>4.0</td><td>84.5</td><td>64.5</td><td>91.2</td><td>95.0</td><td>89.3</td><td>100.0</td><td>90</td><td>100</td><td>100.0</td><td>80</td><td>67.8</td></tr><tr><td>CasaOaxaca|Paraíso familiar|A 10 min de la playa|Wifi de 300 MB</td><td>$2,102 MXN</td><td>4.9</td><td>79</td><td>0.5 km</td><td>6</td><td>3.0</td><td>5.0</td><td>83.7</td><td>58.3</td><td>92.2</td><td>95.5</td><td>96.4</td><td>100.0</td><td>90</td><td>100</td><td>100.0</td><td>70</td><td>72.7</td></tr><tr><td>CondoFamiliar|A 10min Playa|WIFI200MB|Gym|Albercas</td><td>$2,206 MXN</td><td>4.9</td><td>68</td><td>0.6 km</td><td>6</td><td>3.0</td><td>5.0</td><td>83.2</td><td>62.1</td><td>90.3</td><td>89.4</td><td>89.3</td><td>100.0</td><td>90</td><td>94</td><td>90.0</td><td>55</td><td>68.8</td></tr><tr><td>Apto 3 hab + 2 baños + alberca + gym + asador</td><td>$1,684 MXN</td><td>5.0</td><td>40</td><td>0.4 km</td><td>6</td><td>3.0</td><td>3.0</td><td>80.0</td><td>42.7</td><td>92.4</td><td>91.0</td><td>92.9</td><td>100.0</td><td>90</td><td>92</td><td>100.0</td><td>55</td><td>78.7</td></tr><tr><td>Departamento de Lujo en conjunto residencial</td><td>$1,891 MXN</td><td>4.9</td><td>118</td><td>0.5 km</td><td>6</td><td>3.0</td><td>5.0</td><td>79.9</td><td>50.4</td><td>89.8</td><td>86.0</td><td>75.0</td><td>100.0</td><td>90</td><td>94</td><td>90.0</td><td>55</td><td>69.8</td></tr></tbody></table></div>
+        </section>
+
+        <section class="section anchor" id="pricing-visuals">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">6. Revenue and pricing visuals</div>
+              <h2>Where the current pricing story is vulnerable</h2>
+            </div>
+          </div>
+          <p class="small">These plots combine observed Airbnb price points with review/trust and value scores. They are not substitutes for true host-dashboard conversion data, but they are directionally useful.</p>
+          <div class="chart-grid">
+            <div class="chart-card">
+    <svg viewBox="0 0 760 360" class="chart-svg" role="img" aria-label="Nightly price vs trust strength">
+      <rect x="0" y="0" width="760" height="360" rx="18" fill="#fffaf2"></rect>
+      <text x="70" y="18" font-size="16" fill="#1f2933" font-weight="700">Nightly price vs trust strength</text>
+      <line x1="70.0" y1="30" x2="70.0" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="70.0" y="344" text-anchor="middle" fill="#594c38" font-size="11">1455</text><line x1="237.5" y1="30" x2="237.5" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="237.5" y="344" text-anchor="middle" fill="#594c38" font-size="11">1804</text><line x1="405.0" y1="30" x2="405.0" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="405.0" y="344" text-anchor="middle" fill="#594c38" font-size="11">2153</text><line x1="572.5" y1="30" x2="572.5" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="572.5" y="344" text-anchor="middle" fill="#594c38" font-size="11">2502</text><line x1="740.0" y1="30" x2="740.0" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="740.0" y="344" text-anchor="middle" fill="#594c38" font-size="11">2851</text>
+      <line x1="70" y1="310.0" x2="740" y2="310.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="314.0" text-anchor="start" fill="#594c38" font-size="11">73</text><line x1="70" y1="240.0" x2="740" y2="240.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="244.0" text-anchor="start" fill="#594c38" font-size="11">80</text><line x1="70" y1="170.0" x2="740" y2="170.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="174.0" text-anchor="start" fill="#594c38" font-size="11">87</text><line x1="70" y1="100.0" x2="740" y2="100.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="104.0" text-anchor="start" fill="#594c38" font-size="11">93</text><line x1="70" y1="30.0" x2="740" y2="30.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="34.0" text-anchor="start" fill="#594c38" font-size="11">100</text>
+      <line x1="70" y1="310" x2="740" y2="310" stroke="#574737"></line>
+      <line x1="70" y1="30" x2="70" y2="310" stroke="#574737"></line>
+      <g><circle cx="184.5" cy="74.0" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Apartamento a 10 minutos de la playa</title></g><g><circle cx="460.7" cy="30.0" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>NUEVO Colibri Coto11 |12min a la playa, cerrado, parque infantil</title></g><g><circle cx="740.0" cy="310.0" r="7" fill="#b07a00" stroke="#111111" stroke-width="2"></circle><title>Gran casa de lujo Sahuaro Selvanova</title></g><g><circle cx="205.0" cy="33.1" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Xelva</title></g><g><circle cx="430.2" cy="30.0" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>CondoFamiliar|A 10min Playa|WIFI200MB|Gym|Albercas</title></g><g><circle cx="279.4" cy="30.0" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>Departamento de Lujo en conjunto residencial</title></g><g><circle cx="70.0" cy="30.0" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Departamento bonito a solo 10 minutos* de la 5ta.</title></g><g><circle cx="165.6" cy="30.0" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Vista a la alberca + balcón + 3 hab + 2 baños</title></g><g><circle cx="180.1" cy="30.0" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>Apto 3 hab + 2 baños + alberca + gym + asador</title></g><g><circle cx="260.6" cy="30.0" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Apto acogedor + lavadora + alberca + 3 hab</title></g><g><circle cx="380.5" cy="30.0" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>CasaOaxaca|Paraíso familiar|A 10 min de la playa|Wifi de 300 MB</title></g>
+      <text x="405.0" y="358" text-anchor="middle" fill="#594c38" font-size="12">Observed nightly search-price proxy (MXN)</text>
+      <text x="16" y="170.0" transform="rotate(-90 16 170.0)" text-anchor="middle" fill="#594c38" font-size="12">Trust / review strength score</text>
+    </svg>
+    </div>
+            <div class="chart-card">
+    <svg viewBox="0 0 760 360" class="chart-svg" role="img" aria-label="Nightly price vs value-for-money signal">
+      <rect x="0" y="0" width="760" height="360" rx="18" fill="#fffaf2"></rect>
+      <text x="70" y="18" font-size="16" fill="#1f2933" font-weight="700">Nightly price vs value-for-money signal</text>
+      <line x1="70.0" y1="30" x2="70.0" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="70.0" y="344" text-anchor="middle" fill="#594c38" font-size="11">1455</text><line x1="237.5" y1="30" x2="237.5" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="237.5" y="344" text-anchor="middle" fill="#594c38" font-size="11">1804</text><line x1="405.0" y1="30" x2="405.0" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="405.0" y="344" text-anchor="middle" fill="#594c38" font-size="11">2153</text><line x1="572.5" y1="30" x2="572.5" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="572.5" y="344" text-anchor="middle" fill="#594c38" font-size="11">2502</text><line x1="740.0" y1="30" x2="740.0" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="740.0" y="344" text-anchor="middle" fill="#594c38" font-size="11">2851</text>
+      <line x1="70" y1="310.0" x2="740" y2="310.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="314.0" text-anchor="start" fill="#594c38" font-size="11">54</text><line x1="70" y1="240.0" x2="740" y2="240.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="244.0" text-anchor="start" fill="#594c38" font-size="11">62</text><line x1="70" y1="170.0" x2="740" y2="170.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="174.0" text-anchor="start" fill="#594c38" font-size="11">68</text><line x1="70" y1="100.0" x2="740" y2="100.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="104.0" text-anchor="start" fill="#594c38" font-size="11">76</text><line x1="70" y1="30.0" x2="740" y2="30.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="34.0" text-anchor="start" fill="#594c38" font-size="11">82</text>
+      <line x1="70" y1="310" x2="740" y2="310" stroke="#574737"></line>
+      <line x1="70" y1="30" x2="70" y2="310" stroke="#574737"></line>
+      <g><circle cx="184.5" cy="102.0" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Apartamento a 10 minutos de la playa</title></g><g><circle cx="460.7" cy="177.0" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>NUEVO Colibri Coto11 |12min a la playa, cerrado, parque infantil</title></g><g><circle cx="740.0" cy="310.0" r="7" fill="#b07a00" stroke="#111111" stroke-width="2"></circle><title>Gran casa de lujo Sahuaro Selvanova</title></g><g><circle cx="205.0" cy="111.0" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Xelva</title></g><g><circle cx="430.2" cy="167.0" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>CondoFamiliar|A 10min Playa|WIFI200MB|Gym|Albercas</title></g><g><circle cx="279.4" cy="157.0" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>Departamento de Lujo en conjunto residencial</title></g><g><circle cx="70.0" cy="30.0" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Departamento bonito a solo 10 minutos* de la 5ta.</title></g><g><circle cx="165.6" cy="63.0" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Vista a la alberca + balcón + 3 hab + 2 baños</title></g><g><circle cx="180.1" cy="68.0" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>Apto 3 hab + 2 baños + alberca + gym + asador</title></g><g><circle cx="260.6" cy="108.0" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Apto acogedor + lavadora + alberca + 3 hab</title></g><g><circle cx="380.5" cy="128.0" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>CasaOaxaca|Paraíso familiar|A 10 min de la playa|Wifi de 300 MB</title></g>
+      <text x="405.0" y="358" text-anchor="middle" fill="#594c38" font-size="12">Observed nightly search-price proxy (MXN)</text>
+      <text x="16" y="170.0" transform="rotate(-90 16 170.0)" text-anchor="middle" fill="#594c38" font-size="12">Value-for-money score</text>
+    </svg>
+    </div>
+          </div>
+        </section>
+
+        <section class="section anchor" id="frontier">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">7. Occupancy / ADR frontier</div>
+              <h2>The report’s best estimate of the revenue frontier</h2>
+            </div>
+          </div>
+          <div class="callout good">High-confidence interpretation: your listing is already priced like a stronger incumbent, but the trust stack still looks like a newer listing. That mismatch is the core frontier problem to fix.</div>
+          <div class="chart-grid">
+            <div class="chart-card">
+    <svg viewBox="0 0 760 360" class="chart-svg" role="img" aria-label="Price vs occupancy proxy">
+      <rect x="0" y="0" width="760" height="360" rx="18" fill="#fffaf2"></rect>
+      <text x="70" y="18" font-size="16" fill="#1f2933" font-weight="700">Price vs occupancy proxy</text>
+      <line x1="70.0" y1="30" x2="70.0" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="70.0" y="344" text-anchor="middle" fill="#594c38" font-size="11">1455</text><line x1="237.5" y1="30" x2="237.5" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="237.5" y="344" text-anchor="middle" fill="#594c38" font-size="11">1804</text><line x1="405.0" y1="30" x2="405.0" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="405.0" y="344" text-anchor="middle" fill="#594c38" font-size="11">2153</text><line x1="572.5" y1="30" x2="572.5" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="572.5" y="344" text-anchor="middle" fill="#594c38" font-size="11">2502</text><line x1="740.0" y1="30" x2="740.0" y2="310" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="740.0" y="344" text-anchor="middle" fill="#594c38" font-size="11">2851</text>
+      <line x1="70" y1="310.0" x2="740" y2="310.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="314.0" text-anchor="start" fill="#594c38" font-size="11">76</text><line x1="70" y1="240.0" x2="740" y2="240.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="244.0" text-anchor="start" fill="#594c38" font-size="11">80</text><line x1="70" y1="170.0" x2="740" y2="170.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="174.0" text-anchor="start" fill="#594c38" font-size="11">84</text><line x1="70" y1="100.0" x2="740" y2="100.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="104.0" text-anchor="start" fill="#594c38" font-size="11">89</text><line x1="70" y1="30.0" x2="740" y2="30.0" stroke="#e0d8c8" stroke-dasharray="2 4"></line><text x="18" y="34.0" text-anchor="start" fill="#594c38" font-size="11">93</text>
+      <line x1="70" y1="310" x2="740" y2="310" stroke="#574737"></line>
+      <line x1="70" y1="30" x2="70" y2="310" stroke="#574737"></line>
+      <g><circle cx="184.5" cy="75.3" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Apartamento a 10 minutos de la playa</title></g><g><circle cx="460.7" cy="57.5" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>NUEVO Colibri Coto11 |12min a la playa, cerrado, parque infantil</title></g><g><circle cx="740.0" cy="310.0" r="7" fill="#b07a00" stroke="#111111" stroke-width="2"></circle><title>Gran casa de lujo Sahuaro Selvanova</title></g><g><circle cx="205.0" cy="64.0" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Xelva</title></g><g><circle cx="430.2" cy="72.1" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>CondoFamiliar|A 10min Playa|WIFI200MB|Gym|Albercas</title></g><g><circle cx="279.4" cy="80.2" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>Departamento de Lujo en conjunto residencial</title></g><g><circle cx="70.0" cy="30.0" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Departamento bonito a solo 10 minutos* de la 5ta.</title></g><g><circle cx="165.6" cy="34.9" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Vista a la alberca + balcón + 3 hab + 2 baños</title></g><g><circle cx="180.1" cy="38.1" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>Apto 3 hab + 2 baños + alberca + gym + asador</title></g><g><circle cx="260.6" cy="75.3" r="5" fill="#0b7a75" stroke="white" stroke-width="1"></circle><title>Apto acogedor + lavadora + alberca + 3 hab</title></g><g><circle cx="380.5" cy="41.3" r="5" fill="#d1495b" stroke="white" stroke-width="1"></circle><title>CasaOaxaca|Paraíso familiar|A 10 min de la playa|Wifi de 300 MB</title></g>
+      <text x="405.0" y="358" text-anchor="middle" fill="#594c38" font-size="12">Observed nightly search-price proxy (MXN)</text>
+      <text x="16" y="170.0" transform="rotate(-90 16 170.0)" text-anchor="middle" fill="#594c38" font-size="12">Occupancy proxy score</text>
+    </svg>
+    </div>
+            <div class="chart-card">
+    <svg viewBox="0 0 760 346" class="chart-svg" role="img" aria-label="Revenue strength proxy ranking">
+      <rect x="0" y="0" width="760" height="346" rx="18" fill="#fffaf2"></rect>
+      <text x="18" y="20" font-size="16" fill="#1f2933" font-weight="700">Revenue strength proxy ranking</text>
+      <text x="18" y="45" font-size="11" fill="#1f2933">NUEVO Colibri Coto11 |12min a la playa, ce</text><rect x="300" y="34" width="420.0" height="14" rx="7" fill="#d1495b" stroke="none" stroke-width="1.5"></rect><text x="730" y="45" text-anchor="end" font-size="11" fill="#1f2933">84.5</text><text x="18" y="71" font-size="11" fill="#1f2933">CasaOaxaca|Paraíso familiar|A 10 min de la</text><rect x="300" y="60" width="416.0" height="14" rx="7" fill="#d1495b" stroke="none" stroke-width="1.5"></rect><text x="730" y="71" text-anchor="end" font-size="11" fill="#1f2933">83.7</text><text x="18" y="97" font-size="11" fill="#1f2933">CondoFamiliar|A 10min Playa|WIFI200MB|Gym|</text><rect x="300" y="86" width="413.5" height="14" rx="7" fill="#d1495b" stroke="none" stroke-width="1.5"></rect><text x="730" y="97" text-anchor="end" font-size="11" fill="#1f2933">83.2</text><text x="18" y="123" font-size="11" fill="#1f2933">Apto 3 hab + 2 baños + alberca + gym + asa</text><rect x="300" y="112" width="397.6" height="14" rx="7" fill="#d1495b" stroke="none" stroke-width="1.5"></rect><text x="730" y="123" text-anchor="end" font-size="11" fill="#1f2933">80.0</text><text x="18" y="149" font-size="11" fill="#1f2933">Departamento de Lujo en conjunto residenci</text><rect x="300" y="138" width="397.1" height="14" rx="7" fill="#d1495b" stroke="none" stroke-width="1.5"></rect><text x="730" y="149" text-anchor="end" font-size="11" fill="#1f2933">79.9</text><text x="18" y="175" font-size="11" fill="#1f2933">Vista a la alberca + balcón + 3 hab + 2 ba</text><rect x="300" y="164" width="396.6" height="14" rx="7" fill="#0b7a75" stroke="none" stroke-width="1.5"></rect><text x="730" y="175" text-anchor="end" font-size="11" fill="#1f2933">79.8</text><text x="18" y="201" font-size="11" fill="#1f2933">Apto acogedor + lavadora + alberca + 3 hab</text><rect x="300" y="190" width="396.6" height="14" rx="7" fill="#0b7a75" stroke="none" stroke-width="1.5"></rect><text x="730" y="201" text-anchor="end" font-size="11" fill="#1f2933">79.8</text><text x="18" y="227" font-size="11" fill="#1f2933">Xelva</text><rect x="300" y="216" width="394.2" height="14" rx="7" fill="#0b7a75" stroke="none" stroke-width="1.5"></rect><text x="730" y="227" text-anchor="end" font-size="11" fill="#1f2933">79.3</text><text x="18" y="253" font-size="11" fill="#1f2933">Apartamento a 10 minutos de la playa</text><rect x="300" y="242" width="389.7" height="14" rx="7" fill="#0b7a75" stroke="none" stroke-width="1.5"></rect><text x="730" y="253" text-anchor="end" font-size="11" fill="#1f2933">78.4</text><text x="18" y="279" font-size="11" fill="#1f2933">Gran casa de lujo Sahuaro Selvanova</text><rect x="300" y="268" width="388.7" height="14" rx="7" fill="#b07a00" stroke="#111111" stroke-width="1.5"></rect><text x="730" y="279" text-anchor="end" font-size="11" fill="#1f2933">78.2</text><text x="18" y="305" font-size="11" fill="#1f2933">Departamento bonito a solo 10 minutos* de </text><rect x="300" y="294" width="388.7" height="14" rx="7" fill="#0b7a75" stroke="none" stroke-width="1.5"></rect><text x="730" y="305" text-anchor="end" font-size="11" fill="#1f2933">78.2</text>
+    </svg>
+    </div>
+          </div>
+        </section>
+
+        <section class="section anchor" id="amenity-gaps">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">8. Amenity gap analysis</div>
+              <h2>What matters is not just having amenities, but proving the right ones quickly</h2>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Already strong</h3>
+              <div class="pill-row">
+                
+                  <span class="pill pill-good">3 bedrooms</span>
+                
+                  <span class="pill pill-good">4 pools</span>
+                
+                  <span class="pill pill-good">Private parking</span>
+                
+                  <span class="pill pill-good">Self check-in</span>
+                
+                  <span class="pill pill-good">Workspace</span>
+                
+                  <span class="pill pill-good">Gym access</span>
+                
+              </div>
+            </div>
+            <div class="card">
+              <h3>Under-sold or risky</h3>
+              <div class="pill-row">
+                
+                  <span class="pill pill-risk">Verify waterfront amenity</span>
+                
+                  <span class="pill pill-warn">Publish Wi-Fi speed</span>
+                
+                  <span class="pill pill-warn">More review depth needed</span>
+                
+                  <span class="pill pill-warn">Rebuild first 5 photos</span>
+                
+                  <span class="pill pill-warn">Lead with parking + 10 min by car</span>
+                
+              </div>
+            </div>
+          </div>
+          <div class="split">
+            <div>
+              <h3>Must-have communication gaps</h3>
+              <ul class="flat">
+                <li>Wi‑Fi speed proof and workspace proof</li>
+                <li>Parking clarity and arrival clarity</li>
+                <li>Room-by-room sleeping fit</li>
+                <li>Earlier explanation of who this place is best for</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Low-cost perceived-value upgrades</h3>
+              <ul class="flat">
+                <li>Arrival guide with parking and route guidance</li>
+                <li>Beach towels / cooler only if real and consistently stocked</li>
+                <li>Family convenience kit if you can operationalize it cleanly</li>
+                <li>Wi‑Fi screenshot, workspace image, and amenity captions</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section anchor" id="review-intel">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">9. Review intelligence</div>
+              <h2>What guests already reward, and what future complaints will probably be about</h2>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Recurring praise themes</h3>
+              <ul class="flat">
+                
+                <li>Hospitalidad: mentioned by 4 review(s)</li>
+                
+                <li>Comodidad: mentioned by 3 review(s)</li>
+                
+                <li>Ubicación: mentioned by 3 review(s)</li>
+                
+                <li>Amenidades: mentioned by 2 review(s)</li>
+                
+                <li>Calidad del sueño: mentioned by 2 review(s)</li>
+                
+                <li>Cerca: mentioned by 2 review(s)</li>
+                
+                <li>Familiar: mentioned by 2 review(s)</li>
+                
+                <li>Limpieza: mentioned by 2 review(s)</li>
+                
+                <li>Precisión: mentioned by 2 review(s)</li>
+                
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Likely complaint themes to prevent</h3>
+              <ul class="flat">
+                
+                  
+                  <li>Distance from the beach and tourist areas</li>
+                  
+                  <li>Inconsistent water pressure in some listings</li>
+                  
+                  <li>Occasional power outages during peak times</li>
+                  
+                  <li>Need for better maintenance in some properties</li>
+                  
+                  <li>Limited public transport options</li>
+                  
+                
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section anchor" id="photo-copy">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">10. Photo and listing-copy audit</div>
+              <h2>The listing needs to sell calm, spacious group comfort in the first 10 seconds</h2>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Observed photo story</h3>
+              <p>The current gallery sells <strong>space and shared comfort</strong>. Nearby winners hit a clearer emotional promise: more space, calmer nights, easier parking, and a practical family/group base.</p>
+              <p class="small">Observed first five categories: living, living, living, living, living</p>
+            </div>
+            <div class="card">
+              <h3>Recommended visual promise</h3>
+              <ul class="flat">
+                <li><strong>Cover:</strong> bright, spacious living + terrace or living + dining frame</li>
+                <li><strong>First sequence:</strong> space, pool, primary bedroom, kitchen, sleeping plan, parking/security</li>
+                <li><strong>Caption theme:</strong> "3BR for families and groups, 4 pools, private parking, self check-in, 10 min by car."</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section anchor" id="friction">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">11. Booking-friction audit</div>
+              <h2>Where a guest could hesitate before pressing book</h2>
+            </div>
+          </div>
+          <div class="callout risk">
+            <strong>Primary friction callout:</strong> Verify or remove the waterfront-style amenity, then make the first screen more explicit about parking, self check-in, and 10-minute-by-car access.
+          </div>
+          <ul class="flat">
+            <li><strong>Fee friction:</strong> exact line-item fees were not exposed publicly, so compare your all-in total against nearby 3BR totals before trying to defend a premium.</li>
+            <li><strong>Trust friction:</strong> 4 reviews is still light social proof for a premium-priced Selvanova option.</li>
+            <li><strong>Location friction:</strong> the page should say "10 minutes by car" early, not just later in the description.</li>
+            <li><strong>Amenity friction:</strong> prove Wi‑Fi, parking, sleeping fit, and security visually.</li>
+          </ul>
+        </section>
+
+        <section class="section anchor" id="segments">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">12. Guest-segment playbook</div>
+              <h2>Sell to the guests Selvanova naturally fits best</h2>
+            </div>
+          </div>
+          <div class="grid-3">
+            
+            <div class="card">
+              <h3>Families</h3>
+              <p><strong>Positioning:</strong> Lead with 3BR layout, pools, kids club, private parking, kitchen, and sleep comfort.</p>
+              <p><strong>Objection to remove:</strong> Clarify that the beach is about 10 minutes by car, not walkable beachfront.</p>
+              <p><strong>Must show:</strong> Beds by room, pools, terrace, dining table, parking, self check-in.</p>
+            </div>
+            
+            <div class="card">
+              <h3>Friend groups</h3>
+              <p><strong>Positioning:</strong> Sell private bedrooms plus shared living and easy rides to Quinta.</p>
+              <p><strong>Objection to remove:</strong> Remove uncertainty around parking, ride-share ease, and sleeping layout.</p>
+              <p><strong>Must show:</strong> Living room, bedroom separation, pool, outdoor dining, smart TV.</p>
+            </div>
+            
+            <div class="card">
+              <h3>Longer stays</h3>
+              <p><strong>Positioning:</strong> Promote kitchen, laundry, workspace, AC, calm residential setting, nearby shopping.</p>
+              <p><strong>Objection to remove:</strong> Publish Wi-Fi speed and remote-work-ready surface.</p>
+              <p><strong>Must show:</strong> Workspace, Wi-Fi speed screenshot, washer/dryer, kitchen storage, parking.</p>
+            </div>
+            
+            <div class="card">
+              <h3>Park and mobility travelers</h3>
+              <p><strong>Positioning:</strong> Frame the unit as a practical launchpad for beach days, parks, cenotes, and town nights.</p>
+              <p><strong>Objection to remove:</strong> Be explicit that a car or rideshare is the easiest fit.</p>
+              <p><strong>Must show:</strong> Parking, self check-in, calm arrival, practical location copy.</p>
+            </div>
+            
+            <div class="card">
+              <h3>Value-seeking space buyers</h3>
+              <p><strong>Positioning:</strong> Compare implicitly against paying for multiple hotel rooms or a cramped 2BR.</p>
+              <p><strong>Objection to remove:</strong> Demonstrate why the inland location is worth the trade for space and amenities.</p>
+              <p><strong>Must show:</strong> Square-meter feel, terrace, bed plan, pools, family amenities.</p>
+            </div>
+            
+          </div>
+        </section>
+
+        <section class="section anchor" id="titles-copy">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">13. Recommended listing titles and rewritten copy</div>
+              <h2>Lead with fit, not generic luxury language</h2>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Title options</h3>
+              <ul class="flat">
+                
+                <li>Selvanova 3BR for Families | Pools, parking, 10 min beach</li>
+                
+                <li>Spacious Selvanova 3BR | 4 pools, gym, private parking</li>
+                
+                <li>Quiet 3BR in Selvanova | Family-ready, self check-in</li>
+                
+                <li>3BR Playa base in Selvanova | Pools, AC, parking</li>
+                
+                <li>Family condo in Selvanova | 3BR, terrace, 10 min beach</li>
+                
+                <li>Selvanova 3BR retreat | 4 pools, kids club, parking</li>
+                
+                <li>Spacious Playa del Carmen 3BR | Selvanova, pools, gym</li>
+                
+                <li>Secure Selvanova 3BR | Terrace, pools, easy beach access</li>
+                
+                <li>3BR for groups in Selvanova | Parking, pools, AC</li>
+                
+                <li>Quiet family stay in Selvanova | 3BR, pools, 5th Ave by car</li>
+                
+              </ul>
+            </div>
+            <div class="card">
+              <h3>What guests should understand in 10 seconds</h3>
+              <ul class="flat">
+                
+                <li>3 bedrooms, 2 baths, up to 6 guests: clear fit for families and friend groups.</li>
+                
+                <li>Quiet Selvanova residential setting with 4 pools, gym, kids club, BBQ areas, and private parking.</li>
+                
+                <li>10 minutes by car to the beach and Quinta Avenida: honest location framing, not a beach-strip promise.</li>
+                
+                <li>Self check-in, full kitchen, laundry, AC in every bedroom, and large TV room reduce booking anxiety fast.</li>
+                
+                <li>Best for guests who want more space, calmer nights, and easier logistics than a compact downtown condo.</li>
+                
+              </ul>
+            </div>
+          </div>
+          <div class="grid-3" style="margin-top:14px;">
+            
+            <div class="card">
+              <h3>Family-first</h3>
+              <p><strong>EN:</strong> Spacious 3-bedroom apartment in Selvanova Residencial, built for families who want a calmer Playa del Carmen base. You get 4 pools, gym access, private parking, self check-in, full kitchen, laundry, AC in every bedroom, and a private terrace. Best for guests with a car or rideshare budget who want more space, more comfort, and easier logistics than a small tourist-zone condo.</p>
+              <p><strong>ES:</strong> Departamento amplio de 3 recámaras en Selvanova Residencial, ideal para familias que buscan una base más tranquila en Playa del Carmen. Tienes acceso a 4 albercas, gimnasio, estacionamiento privado, llegada autónoma, cocina completa, lavandería, aire acondicionado en cada recámara y terraza privada. Es ideal para huéspedes con auto o presupuesto para rideshare que quieren más espacio, más comodidad y menos estrés que en un estudio turístico.</p>
+            </div>
+            
+            <div class="card">
+              <h3>Friends and group stays</h3>
+              <p><strong>EN:</strong> Traveling with friends or another couple? This Selvanova 3BR gives your group real separation, shared living space, pools, parking, and easy car access to the beach, Quinta Avenida, restaurants, and day trips.</p>
+              <p><strong>ES:</strong> ¿Viajas con amigos o con otra pareja? Este 3BR en Selvanova ofrece privacidad real, áreas comunes cómodas, albercas, estacionamiento y acceso práctico en auto a la playa, Quinta Avenida, restaurantes y tours.</p>
+            </div>
+            
+            <div class="card">
+              <h3>Long-stay and practical base</h3>
+              <p><strong>EN:</strong> A practical Riviera Maya launchpad for longer stays: reliable self check-in, workspace, strong comfort cues, laundry, kitchen, AC, parking, and a residential setting that feels calmer after beach or park days.</p>
+              <p><strong>ES:</strong> Una base práctica en la Riviera Maya para estancias más largas: llegada autónoma, área de trabajo, lavandería, cocina, aire acondicionado, estacionamiento y un entorno residencial que se siente más tranquilo después de un día de playa o parques.</p>
+            </div>
+            
+          </div>
+        </section>
+
+        <section class="section anchor" id="photo-order">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">14. Recommended photo order and missing shots</div>
+              <h2>Build the click and the conversion in the same sequence</h2>
+            </div>
+          </div>
+          <ul class="flat">
+            
+            <li>Bright living room plus terrace hero shot with the apartment feeling open, not cropped.</li>
+            
+            <li>One clean pool lifestyle image that feels family-ready, not just generic amenities.</li>
+            
+            <li>Primary bedroom with bed size and natural light clearly visible.</li>
+            
+            <li>Second and third bedroom shots that prove the group sleeping plan immediately.</li>
+            
+            <li>Kitchen plus dining setup ready for a real meal, not a detail close-up.</li>
+            
+            <li>Private parking and controlled-access entry shot to reduce mobility and safety anxiety.</li>
+            
+            <li>Workspace/Wi-Fi proof image, ideally with a speed-test screen.</li>
+            
+            <li>A practical local-context image or caption card: 10 min by car to beach and Quinta, shopping nearby.</li>
+            
+          </ul>
+        </section>
+
+        <section class="section anchor" id="pricing">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">15. Pricing / minimum-night / fee / cancellation recommendations</div>
+              <h2>Monetise like a strong incumbent only after earning incumbent-level trust</h2>
+            </div>
+          </div>
+          <ul class="flat">
+            
+            <li><strong>Hold a premium only when trust improves:</strong> Observed 2-night search pricing puts the listing about 58.9% above the direct-comp median. With only 4 reviews, premium pricing needs stronger photo and trust proof than higher-social-proof Selvanova rivals. <em>Impact:</em> ADR and conversion.</li>
+            
+            <li><strong>Test a lower weekend entry point until review count reaches double digits:</strong> A slightly more compelling first-booking price can reduce review-count drag and accelerate ranking-safe social proof. <em>Impact:</em> Occupancy, ranking, reviews.</li>
+            
+            <li><strong>Audit fee load inside the host dashboard:</strong> Search results show fee-inclusive totals, but exact fee lines were not exposed in the listing payload. If the all-in total feels high versus nearby 3BRs, conversion will suffer before guests even click. <em>Impact:</em> Conversion and occupancy.</li>
+            
+            <li><strong>Keep self check-in and clarify it visually:</strong> This is already a conversion asset. It reduces arrival friction and matters more in a car-based residential location. <em>Impact:</em> Conversion, reviews.</li>
+            
+            <li><strong>Review cancellation setting for competitiveness:</strong> Exact cancellation terms were not exposed publicly here. If your setting is stricter than nearby family-group comps, a more flexible option can help a low-review listing compete. <em>Impact:</em> Conversion and ranking competitiveness.</li>
+            
+          </ul>
+        </section>
+
+        <section class="section anchor" id="action-plan">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">16. 30/60/90 day action plan</div>
+              <h2>What to do now, next, and after the next review wave lands</h2>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="report-table action-table">
+              <thead>
+                <tr>
+                  <th>Window</th>
+                  <th>What to change</th>
+                  <th>Why it matters</th>
+                  <th>Evidence</th>
+                  <th>Impact</th>
+                  <th>Confidence</th>
+                  <th>Difficulty</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                <tr>
+                  <td>0-7 days</td>
+                  <td>Verify and remove any inaccurate amenity, especially 'Frente al agua', if it is not literally true.</td>
+                  <td>An inland Selvanova apartment should not risk guest disappointment with a waterfront-type amenity signal.</td>
+                  <td>Observed on the public Airbnb amenity list.</td>
+                  <td>Reviews, conversion, policy safety</td>
+                  <td>High</td>
+                  <td>Low</td>
+                </tr>
+                
+                <tr>
+                  <td>0-7 days</td>
+                  <td>Replace the headline and first-screen copy with a fit-led version: 3BR, pools, parking, self check-in, 10 min by car.</td>
+                  <td>Current title is more generic and less trust-building than the best Selvanova messaging patterns.</td>
+                  <td>Observed title plus nearby comp positioning.</td>
+                  <td>Conversion</td>
+                  <td>High</td>
+                  <td>Low</td>
+                </tr>
+                
+                <tr>
+                  <td>0-7 days</td>
+                  <td>Reorder the first 8 photos to show space, pool, primary bedroom, kitchen, second/third bedroom, parking/security, terrace, lifestyle.</td>
+                  <td>The apartment needs to win the 'will my group fit comfortably?' decision in seconds.</td>
+                  <td>Photo-order patterns and search-result hero signals.</td>
+                  <td>Conversion, CTR</td>
+                  <td>High</td>
+                  <td>Medium</td>
+                </tr>
+                
+                <tr>
+                  <td>0-7 days</td>
+                  <td>Add Wi-Fi speed proof and workspace proof to the gallery and description.</td>
+                  <td>Selvanova also competes for longer stays and remote/hybrid travelers. Right now the Wi-Fi benefit is underspecified.</td>
+                  <td>Workspace amenity is present; speed proof is not visible.</td>
+                  <td>Occupancy, conversion</td>
+                  <td>Medium</td>
+                  <td>Low</td>
+                </tr>
+                
+                <tr>
+                  <td>8-30 days</td>
+                  <td>Push for the next 8-12 high-quality reviews with a tighter arrival guide, local guidebook, and post-stay feedback loop.</td>
+                  <td>Search pricing is roughly 58.9% above the direct-comp median.</td>
+                  <td>4 reviews versus stronger Selvanova rivals with far deeper social proof.</td>
+                  <td>Conversion, ranking, ADR</td>
+                  <td>High</td>
+                  <td>Medium</td>
+                </tr>
+                
+                <tr>
+                  <td>8-30 days</td>
+                  <td>Tune the price ladder to earn more clicks before raising back to premium.</td>
+                  <td>A newer listing can monetise more effectively by trading a small amount of ADR for review momentum and occupancy proof.</td>
+                  <td>Observed direct-comp price and review spread.</td>
+                  <td>Occupancy, reviews, ranking</td>
+                  <td>Medium</td>
+                  <td>Medium</td>
+                </tr>
+                
+                <tr>
+                  <td>8-30 days</td>
+                  <td>Build a family-ready trust stack: crib/high chair only if real, beach towels/cooler, kitchen starter kit, arrival video.</td>
+                  <td>This listing naturally fits families and groups. Small operational touches create the next wave of review tags.</td>
+                  <td>Review tags already lean toward hospitality, comfort, family, sleep, and amenities.</td>
+                  <td>Reviews, conversion</td>
+                  <td>Medium</td>
+                  <td>Medium</td>
+                </tr>
+                
+                <tr>
+                  <td>31-90 days</td>
+                  <td>A/B test cover-photo concepts between interior-space hero and pool-lifestyle hero.</td>
+                  <td>The winning image should improve click-through rate in search without discounting.</td>
+                  <td>Observed competitive cover-photo patterns and the listing's current premium position.</td>
+                  <td>CTR, conversion, ranking</td>
+                  <td>Medium</td>
+                  <td>Medium</td>
+                </tr>
+                
+                <tr>
+                  <td>31-90 days</td>
+                  <td>Strengthen authority cues around hosting consistency: guidebook polish, repeated review themes, cohost responsiveness, and cleaner operational scripts.</td>
+                  <td>Trust is the main gap versus established Selvanova winners, not raw amenity count.</td>
+                  <td>Observed host age/review count gap versus aspirational comps.</td>
+                  <td>Reviews, ADR, conversion</td>
+                  <td>High</td>
+                  <td>Medium</td>
+                </tr>
+                
+                <tr>
+                  <td>31-90 days</td>
+                  <td>Re-check cancellation, minimum-night, and fee settings against live competitors inside the host dashboard.</td>
+                  <td>AirDNA metrics and exact public cancellation text were blocked, so the final monetisation edge must be tuned with dashboard-side settings.</td>
+                  <td>Public extraction gap plus search-result total-price spread.</td>
+                  <td>Conversion, occupancy, ADR</td>
+                  <td>Medium</td>
+                  <td>Low</td>
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section anchor" id="quick-wins">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">17. High-confidence quick wins</div>
+              <h2>No-regret changes that should improve conversion quality fast</h2>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <ul class="flat">
+                
+                <li>Verify the 'Frente al agua' amenity immediately; remove it if inaccurate.</li>
+                
+                <li>Change the title from generic luxury language to fit-led Selvanova positioning.</li>
+                
+                <li>Move pool, living room, and bedroom proof into the first 5 photos.</li>
+                
+                <li>Publish a Wi-Fi speed screenshot and workspace photo.</li>
+                
+                <li>State '10 minutes by car to the beach and Quinta' exactly and early.</li>
+                
+              </ul>
+            </div>
+            <div class="card">
+              <ul class="flat">
+                
+                <li>Lead with private parking and self check-in in the first screen.</li>
+                
+                <li>Add room-by-room bed labels to captions or description.</li>
+                
+                <li>Use review themes like comfort, hospitality, family, and sleep in copy without copying guest text.</li>
+                
+                <li>Sharpen family/group positioning instead of trying to sound beachfront.</li>
+                
+                <li>Audit fee load and weekend entry pricing before pushing ADR higher.</li>
+                
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section anchor" id="appendix">
+          <div class="section-head">
+            <div>
+              <div class="eyebrow">18. Appendix with raw data, assumptions, and data-quality notes</div>
+              <h2>What was observed directly, what was inferred, and what remained blocked</h2>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="card">
+              <h3>Blocked or unavailable fields</h3>
+              <ul class="flat">
+                
+                <li>AirDNA submarket overview pages were accessible, but the listing-specific AirDNA page and raw API response bodies were not exported directly from the browser session.</li>
+                
+                <li>Some AirDNA panels show abbreviated currency displays; values are cited as observed from the interface rather than treated as fully normalized exports unless otherwise noted.</li>
+                
+                <li>Exact Airbnb cancellation-policy text was not exposed in the public listing payload.</li>
+                
+                <li>Exact cleaning-fee and tax line items were not consistently exposed on public listing pages; search results showed fee-inclusive totals only.</li>
+                
+                <li>Public review payloads exposed review tags and category ratings more reliably than full review text.</li>
+                
+                <li>No host-dashboard-only signals were available: impression share, click-through rate, conversion rate, or booking lead-time data.</li>
+                
+              </ul>
+            </div>
+            <div class="card">
+              <h3>Observed artifacts</h3>
+              <ul class="flat sources">
+                
+                <li><a href="artifacts/my_listing_airbnb_full.png">Primary listing screenshot</a></li>
+                
+                <li><a href="artifacts/airbnb_search_selvanova.png">Selvanova Airbnb search screenshot</a></li>
+                
+                <li><a href="artifacts/airdna_submarket_overview.png">AirDNA submarket overview screenshot</a></li>
+                
+                <li><a href="artifacts/airdna_submarket_occupancy.png">AirDNA occupancy screenshot</a></li>
+                
+                <li><a href="artifacts/airdna_submarket_snapshot.json">AirDNA submarket snapshot JSON</a></li>
+                
+                <li><a href="artifacts/my_listing_snapshot.md">Primary Airbnb page snapshot</a></li>
+                
+                <li><a href="artifacts/search_html/selvanova_q1.html">Search HTML: selvanova_q1.html</a></li>
+                
+                <li><a href="artifacts/search_html/selvanova_q6.html">Search HTML: selvanova_q6.html</a></li>
+                
+                <li><a href="artifacts/search_html/selvanova_q6_bed3.html">Search HTML: selvanova_q6_bed3.html</a></li>
+                
+                <li><a href="artifacts/search_html/selvanova_path.html">Search HTML: selvanova_path.html</a></li>
+                
+                <li><a href="artifacts/listing_html/1056702274796837320.html">Listing HTML: 1056702274796837320.html</a></li>
+                
+                <li><a href="artifacts/listing_html/1069626935810673923.html">Listing HTML: 1069626935810673923.html</a></li>
+                
+                <li><a href="artifacts/listing_html/1092009434119745584.html">Listing HTML: 1092009434119745584.html</a></li>
+                
+                <li><a href="artifacts/listing_html/1110169530336124875.html">Listing HTML: 1110169530336124875.html</a></li>
+                
+                <li><a href="artifacts/listing_html/1171806080815881741.html">Listing HTML: 1171806080815881741.html</a></li>
+                
+                <li><a href="artifacts/listing_html/1279117992759378761.html">Listing HTML: 1279117992759378761.html</a></li>
+                
+                <li><a href="artifacts/listing_html/1298593425458362350.html">Listing HTML: 1298593425458362350.html</a></li>
+                
+                <li><a href="artifacts/listing_html/1408935188738773179.html">Listing HTML: 1408935188738773179.html</a></li>
+                
+                <li><a href="artifacts/listing_html/1536552287713767939.html">Listing HTML: 1536552287713767939.html</a></li>
+                
+                <li><a href="artifacts/listing_html/1614163423009452086.html">Listing HTML: 1614163423009452086.html</a></li>
+                
+              </ul>
+            </div>
+          </div>
+          <p class="small sources">Structured outputs: <span class="mono">output/selvanova_comps.csv</span>, <span class="mono">output/selvanova_comps.json</span>, <span class="mono">output/notes.md</span>. AirDNA submarket observations are saved in <span class="mono">output/artifacts/airdna_submarket_snapshot.json</span>.</p>
+        </section>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
+        
